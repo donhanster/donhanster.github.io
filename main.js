@@ -187,6 +187,7 @@ var AppComponent = /** @class */ (function () {
         this.selectNecklaceIdx = -1;
         this.selectRingIdx = -1;
         this.selectBootIdx = -1;
+        this.CalculateStats();
     };
     AppComponent.prototype.edit = function (arr, i) {
         console.log("edit", arr, i);
@@ -260,12 +261,24 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.CalculateStats = function () {
         this.statBonuses = [];
         this.finalStats = new _stats__WEBPACK_IMPORTED_MODULE_10__["Stats"]();
-        this.addStats(this.finalStats, this.weapons[this.selectWeaponIdx].stats);
-        this.addStats(this.finalStats, this.helmets[this.selectHelmetIdx].stats);
-        this.addStats(this.finalStats, this.armors[this.selectArmorIdx].stats);
-        this.addStats(this.finalStats, this.necklaces[this.selectNecklaceIdx].stats);
-        this.addStats(this.finalStats, this.rings[this.selectRingIdx].stats);
-        this.addStats(this.finalStats, this.boots[this.selectBootIdx].stats);
+        if (this.selectWeaponIdx >= 0) {
+            this.addStats(this.finalStats, this.weapons[this.selectWeaponIdx].stats);
+        }
+        if (this.selectHelmetIdx >= 0) {
+            this.addStats(this.finalStats, this.helmets[this.selectHelmetIdx].stats);
+        }
+        if (this.selectArmorIdx >= 0) {
+            this.addStats(this.finalStats, this.armors[this.selectArmorIdx].stats);
+        }
+        if (this.selectNecklaceIdx >= 0) {
+            this.addStats(this.finalStats, this.necklaces[this.selectNecklaceIdx].stats);
+        }
+        if (this.selectRingIdx >= 0) {
+            this.addStats(this.finalStats, this.rings[this.selectRingIdx].stats);
+        }
+        if (this.selectBootIdx >= 0) {
+            this.addStats(this.finalStats, this.boots[this.selectBootIdx].stats);
+        }
         // calculate bonus
         for (var i = 0; i < this.sets.length; i++) {
             var currentSet = this.sets[i];
@@ -670,6 +683,7 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "kikirat-v2", job: "Knight", zodiacSign: "Capricorn", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2314, 0, 304, 0, 235, 0, 90, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3213, 0, 410, 0, 321, 0, 90, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4202, 0, 525, 0, 414, 0, 90, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5284, 0, 652, 0, 517, 0, 90, 0, 0, 0, 15, 150, 5) }] },
     { name: "kiris", job: "Ranger", zodiacSign: "Capricorn", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2031, 0, 254, 0, 322, 0, 104, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2819, 0, 341, 0, 439, 0, 104, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3688, 0, 438, 0, 567, 0, 104, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4637, 0, 543, 0, 707, 0, 104, 0, 0, 0, 15, 150, 5) }] },
     { name: "kise", job: "Thief", zodiacSign: "Leo", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3752, 0, 421, 0, 771, 0, 116, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4718, 0, 522, 0, 961, 0, 116, 0, 0, 0, 15, 150, 5) }] },
+    { name: "kitty-clarissa", job: "Warrior", zodiacSign: "Virgo", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2819, 0, 372, 0, 501, 0, 108, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3688, 0, 477, 0, 647, 0, 108, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4637, 0, 592, 0, 807, 0, 108, 0, 0, 0, 15, 150, 5) }] },
     { name: "kluri", job: "Knight", zodiacSign: "Aries", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2208, 0, 278, 0, 252, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3065, 0, 101, 0, 343, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4009, 0, 480, 0, 444, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5041, 0, 596, 0, 553, 0, 101, 0, 0, 0, 15, 150, 5) }] },
     { name: "krau", job: "Knight", zodiacSign: "Pisces", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4492, 0, 557, 0, 553, 0, 100, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5647, 0, 690, 0, 689, 0, 100, 0, 0, 0, 15, 150, 5) }] },
     { name: "leo", job: "Ranger", zodiacSign: "Capricorn", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3016, 0, 355, 0, 484, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3945, 0, 455, 0, 626, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4960, 0, 564, 0, 780, 0, 106, 0, 0, 0, 15, 150, 5) }] },
@@ -708,6 +722,7 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "shooting-star-achates", job: "Soul Weaver", zodiacSign: "Cancer", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2721, 0, 441, 0, 264, 0, 88, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3559, 0, 565, 0, 342, 0, 88, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4475, 0, 701, 0, 426, 0, 88, 0, 0, 0, 15, 150, 5) }] },
     { name: "sigret", job: "Warrior", zodiacSign: "Taurus", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 446, 0, 793, 0, 109, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 553, 0, 989, 0, 109, 0, 0, 0, 15, 150, 5) }] },
     { name: "silk", job: "Ranger", zodiacSign: "Virgo", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2598, 0, 326, 0, 546, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3399, 0, 418, 0, 706, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4273, 0, 518, 0, 880, 0, 117, 0, 0, 0, 15, 150, 5) }] },
+    { name: "specimen-sez", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 381, 0, 793, 0, 113, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 473, 0, 989, 0, 113, 0, 0, 0, 15, 150, 5) }] },
     { name: "specter-tenebria", job: "Mage", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3302, 0, 551, 0, 771, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4152, 0, 683, 0, 961, 0, 106, 0, 0, 0, 15, 150, 5) }] },
     { name: "surin", job: "Thief", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2844, 0, 313, 0, 490, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3720, 0, 401, 0, 633, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4677, 0, 497, 0, 789, 0, 117, 0, 0, 0, 15, 150, 5) }] },
     { name: "sven", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2049, 0, 211, 0, 372, 0, 108, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2844, 0, 284, 0, 507, 0, 108, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3720, 0, 364, 0, 655, 0, 108, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4677, 0, 452, 0, 816, 0, 108, 0, 0, 0, 15, 150, 5) }] },
@@ -717,6 +732,7 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "tieria", job: "Warrior", zodiacSign: "Aries", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2049, 0, 254, 0, 314, 0, 96, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2844, 0, 341, 0, 428, 0, 96, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3720, 0, 438, 0, 553, 0, 96, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4677, 0, 543, 0, 689, 0, 96, 0, 0, 0, 15, 150, 5) }] },
     { name: "tywin", job: "Knight", zodiacSign: "Aries", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4620, 0, 523, 0, 538, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5809, 0, 648, 0, 671, 0, 106, 0, 0, 0, 15, 150, 5) }] },
     { name: "vildred", job: "Thief", zodiacSign: "Leo", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3752, 0, 421, 0, 771, 0, 116, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4718, 0, 522, 0, 961, 0, 116, 0, 0, 0, 15, 150, 5) }] },
+    { name: "violet", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 381, 0, 793, 0, 113, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 473, 0, 989, 0, 113, 0, 0, 0, 15, 150, 5) }] },
     { name: "wanda", job: "Ranger", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](1872, 0, 249, 0, 339, 0, 109, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2598, 0, 335, 0, 462, 0, 109, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3399, 0, 429, 0, 596, 0, 109, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4273, 0, 532, 0, 744, 0, 109, 0, 0, 0, 15, 150, 5) }] },
     { name: "wanderer-silk", job: "Ranger", zodiacSign: "Capricorn", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3016, 0, 355, 0, 484, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3945, 0, 455, 0, 626, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4960, 0, 564, 0, 780, 0, 106, 0, 0, 0, 15, 150, 5) }] },
     { name: "watcher-schuri", job: "Ranger", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3164, 0, 350, 0, 467, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4138, 0, 449, 0, 604, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5203, 0, 557, 0, 753, 0, 106, 0, 0, 0, 15, 150, 5) }] },
