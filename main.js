@@ -295,15 +295,21 @@ var AppComponent = /** @class */ (function () {
         console.log('final', this.finalStats);
     };
     AppComponent.prototype.getSetCnt = function (setName) {
-        var selectedSets = [this.weapons[this.selectWeaponIdx].set,
-            this.helmets[this.selectHelmetIdx].set,
-            this.armors[this.selectArmorIdx].set,
-            this.necklaces[this.selectNecklaceIdx].set,
-            this.rings[this.selectRingIdx].set,
-            this.boots[this.selectBootIdx].set];
+        var selectedSets = [this.getSetName(this.weapons[this.selectWeaponIdx]),
+            this.getSetName(this.helmets[this.selectHelmetIdx]),
+            this.getSetName(this.armors[this.selectArmorIdx]),
+            this.getSetName(this.necklaces[this.selectNecklaceIdx]),
+            this.getSetName(this.rings[this.selectRingIdx]),
+            this.getSetName(this.boots[this.selectBootIdx])];
         return selectedSets.filter(function (item) {
             return item === setName;
         }).length;
+    };
+    AppComponent.prototype.getSetName = function (s) {
+        if (s && s.set) {
+            return s.set;
+        }
+        return "";
     };
     AppComponent.prototype.getNumber = function (n) {
         if (!n)
