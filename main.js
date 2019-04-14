@@ -153,6 +153,8 @@ var AppComponent = /** @class */ (function () {
         };
         // *****************************************
     }
+    AppComponent.prototype.maximize = function (setName) {
+    };
     AppComponent.prototype.addSet = function () {
         var newSet = [];
         newSet.push(this.weapons[this.selectWeaponIdx]);
@@ -259,6 +261,12 @@ var AppComponent = /** @class */ (function () {
         this.selectedStar = this.selectedHero.statsbyStar[0];
         this.selectAwakening(this.selectedAwakening);
         this.CalculateCurrentStats();
+        this.updateSetStats();
+    };
+    AppComponent.prototype.updateSetStats = function () {
+        for (var i = 0; i < this.equipmentSetFinal.length; i++) {
+            this.equipmentSetFinal[i].stats = this.calculateFinalStats(this.equipmentSetStats[i].stats);
+        }
     };
     AppComponent.prototype.selectStar = function (e) {
         if (!e) {
@@ -266,6 +274,7 @@ var AppComponent = /** @class */ (function () {
         }
         this.selectedStar = e;
         this.CalculateCurrentStats();
+        this.updateSetStats();
     };
     AppComponent.prototype.selectAwakening = function (n) {
         var _this = this;
@@ -282,6 +291,7 @@ var AppComponent = /** @class */ (function () {
             this.addStats(this.awakenStat, bonusStatsList[i]);
         }
         this.CalculateCurrentStats();
+        this.updateSetStats();
         console.log("awaken stats", this.awakenStat);
     };
     AppComponent.prototype.addStats = function (dest, src) {
