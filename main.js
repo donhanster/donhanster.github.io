@@ -74,7 +74,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"panel panel-default\">\r\n\t<div class=\"custom-file\" style=\"width:320px;display:inline-block;margin-right:15px;\">\r\n\t\t<input type=\"file\" class=\"custom-file-input\" id=\"customFile\" (change)=\"fileChanged($event)\" >\r\n\t\t<label class=\"custom-file-label\" for=\"customFile\">Choose file</label>\r\n\t</div>\r\n\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"uploadDocument()\">import</button>\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"downloadEquips()\">export</button>\r\n\t<hr>\r\n\r\n</div>\r\n<hr>\r\n<div>\r\n\t<div>\r\n\t\t<div style=\"display:inline-block;\">\r\n\t\t\tHero<br>\r\n\t\t\t<select name=\"equipType\" style=\"width:95px;\" [(ngModel)]=\"selectedHero\" (change)=\"selectHero()\">\r\n\t\t\t\t<option *ngFor=\"let e of heroes\" [ngValue]=\"e\">{{e.name}}</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t<div style=\"display:inline-block;\">\r\n\t\t\t\t<br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedStar.starLevel\" [class.far]=\"i>selectedStar.starLevel\" class=\"fa-star\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectedHero.statsbyStar[0].starLevel <= i && selectStar(selectedHero.statsbyStar[i - selectedHero.statsbyStar[0].starLevel])\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tAwakening <br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedAwakening\" [class.far]=\"i>selectedAwakening\" class=\"fa-star\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectAwakening(i)\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tJob: {{selectedHero.job}} <br>\r\n\t\t\t\tSign: {{selectedHero.zodiacSign}}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n\t<div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n\t\t<div class=\"modal-content modal-lg\">\r\n\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t<h5 class=\"modal-title\" id=\"exampleModalLabel\">Add equipment</h5>\r\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeModal()\">\r\n\t\t\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t\t\t</button>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t<div class=\"container-fluid\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSlot\r\n\t\t\t\t\t\t\t<select name=\"equipType\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.type\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of equipTypes\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSet\r\n\t\t\t\t\t\t\t<select name=\"set\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.set\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of sets\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">\r\n\t\t\t\t\t\t\trarity\r\n\t\t\t\t\t\t\t<select name=\"rarity\" style=\"width:90px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.rarity\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let r of rarities\" [value]=\"r\">{{r}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Level<br><input name=\"level\" [(ngModel)]=\"addEquip.level\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Enhancement<input name=\"enhance\" [(ngModel)]=\"addEquip.enhancementLvl\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/health.gif\" alt=\"Health\"><input name=\"health\" [(ngModel)]=\"addEquip.stats.health\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"healthPct\" [(ngModel)]=\"addEquip.stats.healthPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/defense.gif\" alt=\"Defense\"><input name=\"defense\" [(ngModel)]=\"addEquip.stats.defense\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"defensePct\" [(ngModel)]=\"addEquip.stats.defensePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/attack.gif\" alt=\"Attack\"><input name=\"attack\" [(ngModel)]=\"addEquip.stats.attack\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"attackPct\" [(ngModel)]=\"addEquip.stats.attackPct\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/speed.gif\" alt=\"Speed\"><input name=\"speed\" [(ngModel)]=\"addEquip.stats.speed\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\"><input name=\"critChance\" [(ngModel)]=\"addEquip.stats.critRatePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\"><input name=\"critDamage\" [(ngModel)]=\"addEquip.stats.critDamagePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\"><input name=\"eff\" [(ngModel)]=\"addEquip.stats.effectivenessPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/resistance.gif\" alt=\"Resistance\"><input name=\"resistance\" [(ngModel)]=\"addEquip.stats.resistancePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-footer\">\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"addEquipment()\">Add</button>\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"save()\">Save</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<hr>\r\n<div [hidden]=\"!selectedHero || !selectedStar\">\r\n\t<table>\r\n\t\t<tr>\r\n\t\t\t<td>Base Level {{selectedStar.maxLevel}}</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{selectedStar.stats.attack}}</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{selectedStar.stats.health}}</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{selectedStar.stats.defense}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{selectedStar.stats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{selectedStar.stats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{selectedStar.stats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{selectedStar.stats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{selectedStar.stats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{selectedStar.stats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Awakening</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{awakenStat.attack}} {{awakenStat.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{awakenStat.health}} {{awakenStat.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{awakenStat.defensePct}}%</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{awakenStat.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{awakenStat.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{awakenStat.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{awakenStat.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{awakenStat.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{awakenStat.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Equipment</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{finalStats.attack}} {{finalStats.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{finalStats.health}} {{finalStats.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{finalStats.defense}} {{finalStats.defensePct}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{finalStats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{finalStats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{finalStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{finalStats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{finalStats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{finalStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Artifact</td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.attack\" size=\"2\"></td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.health\" size=\"2\"></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td>Final</td>\r\n\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{((selectedStar.stats.attack + awakenStat.attack + ( selectedStar.stats.attack * awakenStat.attackPct/100)) + ((selectedStar.stats.attack + awakenStat.attack + ( selectedStar.stats.attack * awakenStat.attackPct/100)) * (finalStats.attackPct/100)) + finalStats.attack + getNumber(artifact.attack)) | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{((selectedStar.stats.health + awakenStat.health + ( selectedStar.stats.health * awakenStat.healthPct/100)) + ((selectedStar.stats.health + awakenStat.health + ( selectedStar.stats.health * awakenStat.healthPct/100)) * (finalStats.healthPct/100)) + finalStats.health + getNumber(artifact.health)) | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{(selectedStar.stats.defense * (100+awakenStat.defensePct)/100) * ((finalStats.defensePct + 100)/100) + finalStats.defense | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{(selectedStar.stats.speed + awakenStat.speed + (selectedStar.stats.speed * finalStats.speedPct)/100 + finalStats.speed)| number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{selectedStar.stats.critRatePct + finalStats.critRatePct + awakenStat.critRatePct}}</td>\r\n\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{selectedStar.stats.critDamagePct + finalStats.critDamagePct + awakenStat.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{selectedStar.stats.dualPct + finalStats.dualPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{selectedStar.stats.effectivenessPct + finalStats.effectivenessPct + awakenStat.effectivenessPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{selectedStar.stats.resistancePct + finalStats.resistancePct + awakenStat.resistancePct}}</td>\r\n\t\t</tr>\r\n\t</table>\r\n</div>\r\n\r\n<hr>\r\n\r\n<div>\r\n\t<div>\r\n\t\t<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\" (click)=\"addEquipmentInit()\">Add Equipment</button>\r\n\t\t&nbsp;\r\n\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"unequip()\">Unequip All</button>\r\n\t</div> <br><br>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\tWeapon\r\n\t\t<app-equipment-list [list]=\"weapons\" [selectedEquip]=\"weapons[selectWeaponIdx]\" (selectEquipChange)=\"selectWeapon($event)\" (editEquip)=\"edit(weapons,$event)\" (removeEquip)=\"remove(weapons,$event)\"></app-equipment-list>\r\n\t</div>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\tHelmet\r\n\t\t<app-equipment-list [list]=\"helmets\" [selectedEquip]=\"helmets[selectHelmetIdx]\" (selectEquipChange)=\"selectHelmet($event)\" (editEquip)=\"edit(helmets,$event)\" (removeEquip)=\"remove(helmets,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\tArmor\r\n\t\t<app-equipment-list [list]=\"armors\" [selectedEquip]=\"armors[selectArmorIdx]\" (selectEquipChange)=\"selectArmor($event)\" (editEquip)=\"edit(armors,$event)\" (removeEquip)=\"remove(armors,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\tNecklace\r\n\t\t<app-equipment-list [list]=\"necklaces\" [selectedEquip]=\"necklaces[selectNecklaceIdx]\" (selectEquipChange)=\"selectNecklace($event)\" (editEquip)=\"edit(necklaces,$event)\" (removeEquip)=\"remove(necklaces,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\tRing\r\n\t\t<app-equipment-list [list]=\"rings\" [selectedEquip]=\"rings[selectRingIdx]\" (selectEquipChange)=\"selectRing($event)\" (editEquip)=\"edit(rings,$event)\" (removeEquip)=\"remove(rings,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\tBoot\r\n\t\t<app-equipment-list [list]=\"boots\" [selectedEquip]=\"boots[selectBootIdx]\" (selectEquipChange)=\"selectBoot($event)\" (editEquip)=\"edit(boots,$event)\" (removeEquip)=\"remove(boots,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"container\">\r\n\t<div class=\"custom-file\" style=\"width:320px;display:inline-block;margin-right:15px;\">\r\n\t\t<input type=\"file\" class=\"custom-file-input\" id=\"customFile\" (change)=\"fileChanged($event)\" >\r\n\t\t<label class=\"custom-file-label\" for=\"customFile\">Choose file</label>\r\n\t</div>\r\n\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"uploadDocument()\">import</button>\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"downloadEquips()\">export</button>\r\n\t<hr>\r\n\r\n</div>\r\n<hr>\r\n<div class=\"container\">\r\n\t<div>\r\n\t\t<div style=\"display:inline-block;\">\r\n\t\t\tHero<br>\r\n\t\t\t<select name=\"equipType\" style=\"width:95px;\" [(ngModel)]=\"selectedHero\" (change)=\"selectHero()\">\r\n\t\t\t\t<option *ngFor=\"let e of heroes\" [ngValue]=\"e\">{{e.name}}</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t<div style=\"display:inline-block;\">\r\n\t\t\t\t<br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedStar.starLevel\" [class.far]=\"i>selectedStar.starLevel\" class=\"fa-star finger\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectedHero.statsbyStar[0].starLevel <= i && selectStar(selectedHero.statsbyStar[i - selectedHero.statsbyStar[0].starLevel])\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tAwakening <br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedAwakening\" [class.far]=\"i>selectedAwakening\" class=\"fa-star finger\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectAwakening(i)\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tJob: {{selectedHero.job}} <br>\r\n\t\t\t\tSign: {{selectedHero.zodiacSign}}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<hr>\r\n<div style=\"width:720px;\"[hidden]=\"!selectedHero || !selectedStar\">\r\n\t<table class=\"table table-sm\">\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Base Level {{selectedStar.maxLevel}}</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{selectedStar.stats.attack}}</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{selectedStar.stats.health}}</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{selectedStar.stats.defense}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{selectedStar.stats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{selectedStar.stats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{selectedStar.stats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{selectedStar.stats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{selectedStar.stats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{selectedStar.stats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Awakening</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{awakenStat.attack}} {{awakenStat.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{awakenStat.health}} {{awakenStat.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{awakenStat.defensePct}}%</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{awakenStat.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{awakenStat.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{awakenStat.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{awakenStat.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{awakenStat.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{awakenStat.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Artifact</td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.attack\" size=\"2\"></td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.health\" size=\"2\"></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Equipment</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{equipStats.attack}} {{equipStats.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{equipStats.health}} {{equipStats.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{equipStats.defense}} {{equipStats.defensePct}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{equipStats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{equipStats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{equipStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{equipStats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{equipStats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{equipStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Final</td>\r\n\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{finalStats.attack | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{finalStats.health | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{finalStats.defense | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{finalStats.speed| number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{finalStats.critRatePct}}</td>\r\n\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{finalStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{finalStats.dualPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{finalStats.effectivenessPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{finalStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<ng-container *ngFor=\"let e of equipmentSetStats;let i =index\">\r\n\t\t\t<tr  scope=\"row\">\r\n\t\t\t\t<td>{{e.name}} <span class=\"fas fa-minus attack finger\" (click)=\"removeSet(i)\"></span></td>\r\n\t\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{e.stats.attack}} {{e.stats.attackPct}}%</td>\r\n\t\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{e.stats.health}} {{e.stats.healthPct}}%</td>\r\n\t\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{e.stats.defense}} {{e.stats.defensePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{e.stats.speed}}</td>\r\n\t\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{e.stats.critRatePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{e.stats.critDamagePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{e.stats.dualPct}}</td>\r\n\t\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{e.stats.effectivenessPct}}</td>\r\n\t\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{e.stats.resistancePct}}</td>\r\n\t\t\t</tr>\r\n\t\t\t\r\n\t\t\t<tr scope=\"row\">\r\n\t\t\t\t<td>{{equipmentSetFinal[i].name}}</td>\r\n\t\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{equipmentSetFinal[i].stats.attack | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{equipmentSetFinal[i].stats.health | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{equipmentSetFinal[i].stats.defense | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{equipmentSetFinal[i].stats.speed| number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{equipmentSetFinal[i].stats.critRatePct}}</td>\r\n\t\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{equipmentSetFinal[i].stats.critDamagePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{equipmentSetFinal[i].stats.dualPct}}</td>\r\n\t\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{equipmentSetFinal[i].stats.effectivenessPct}}</td>\r\n\t\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{equipmentSetFinal[i].stats.resistancePct}}</td>\r\n\t\t\t</tr>\r\n\t\t</ng-container>\r\n\t</table>\r\n\r\n</div>\r\n\r\n<hr>\r\n\r\n<div>\r\n\t<div class=\"container\">\r\n\t\t<div class=\"input-group\" style=\"width:300px;\">\r\n\t\t\t<input type=\"text\" [(ngModel)]=\"setName\" placeholder=\"Set Name\" class=\"form-control\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" type=\"button\" (click)=\"addSet()\">Add Set</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<br/>\r\n\t<div style=\"display:inline-block;margin-left:10px;width:360;\" class=\"panel panel-default\" *ngFor=\"let es of equipmentSets;let i =index\">\r\n\t\t<div class=\"input-group\">\r\n\t\t\t<input type=\"text\" [(ngModel)]=\"es.name\" class=\"form-control\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" (click)=\"showSet(i)\"><span class=\"fas fa-angle-double-up\"></span></button>\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" (click)=\"remove(equipmentSets,i)\"><span class=\"fas fa-times\"></span></button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<app-equipment-list [list]=\"es.equipment\" (editEquip)=\"edit(es.equipment,$event)\" (removeEquip)=\"remove(es.equipment,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<div>\r\n\t<h5 style=\"display:inline-block;margin-right:15px;\">Equipment</h5>\r\n\t<span class=\"fas fa-plus finger health\" data-toggle=\"modal\" data-target=\"#exampleModal\" (click)=\"addEquipmentInit()\"></span>\r\n\t<br><br>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Weapon</b>\r\n\t\t<app-equipment-list [list]=\"weapons\" [selectedEquip]=\"weapons[selectWeaponIdx]\" (selectEquipChange)=\"selectWeapon($event)\" (editEquip)=\"edit(weapons,$event)\" (removeEquip)=\"remove(weapons,$event)\"></app-equipment-list>\r\n\t</div>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Helmet</b>\r\n\t\t<app-equipment-list [list]=\"helmets\" [selectedEquip]=\"helmets[selectHelmetIdx]\" (selectEquipChange)=\"selectHelmet($event)\" (editEquip)=\"edit(helmets,$event)\" (removeEquip)=\"remove(helmets,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Armor</b>\r\n\t\t<app-equipment-list [list]=\"armors\" [selectedEquip]=\"armors[selectArmorIdx]\" (selectEquipChange)=\"selectArmor($event)\" (editEquip)=\"edit(armors,$event)\" (removeEquip)=\"remove(armors,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Necklace</b>\r\n\t\t<app-equipment-list [list]=\"necklaces\" [selectedEquip]=\"necklaces[selectNecklaceIdx]\" (selectEquipChange)=\"selectNecklace($event)\" (editEquip)=\"edit(necklaces,$event)\" (removeEquip)=\"remove(necklaces,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Ring</b>\r\n\t\t<app-equipment-list [list]=\"rings\" [selectedEquip]=\"rings[selectRingIdx]\" (selectEquipChange)=\"selectRing($event)\" (editEquip)=\"edit(rings,$event)\" (removeEquip)=\"remove(rings,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Boot</b>\r\n\t\t<app-equipment-list [list]=\"boots\" [selectedEquip]=\"boots[selectBootIdx]\" (selectEquipChange)=\"selectBoot($event)\" (editEquip)=\"edit(boots,$event)\" (removeEquip)=\"remove(boots,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n\t<div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n\t\t<div class=\"modal-content modal-lg\">\r\n\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t<h5 class=\"modal-title\" id=\"exampleModalLabel\">Add equipment</h5>\r\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeModal()\">\r\n\t\t\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t\t\t</button>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t<div class=\"container-fluid\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSlot\r\n\t\t\t\t\t\t\t<select name=\"equipType\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.type\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of equipTypes\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSet\r\n\t\t\t\t\t\t\t<select name=\"set\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.set\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of sets\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">\r\n\t\t\t\t\t\t\trarity\r\n\t\t\t\t\t\t\t<select name=\"rarity\" style=\"width:90px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.rarity\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let r of rarities\" [value]=\"r\">{{r}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Level<br><input name=\"level\" [(ngModel)]=\"addEquip.level\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Enhancement<input name=\"enhance\" [(ngModel)]=\"addEquip.enhancementLvl\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/health.gif\" alt=\"Health\"><input name=\"health\" [(ngModel)]=\"addEquip.stats.health\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"healthPct\" [(ngModel)]=\"addEquip.stats.healthPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/defense.gif\" alt=\"Defense\"><input name=\"defense\" [(ngModel)]=\"addEquip.stats.defense\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"defensePct\" [(ngModel)]=\"addEquip.stats.defensePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/attack.gif\" alt=\"Attack\"><input name=\"attack\" [(ngModel)]=\"addEquip.stats.attack\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"attackPct\" [(ngModel)]=\"addEquip.stats.attackPct\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/speed.gif\" alt=\"Speed\"><input name=\"speed\" [(ngModel)]=\"addEquip.stats.speed\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\"><input name=\"critChance\" [(ngModel)]=\"addEquip.stats.critRatePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\"><input name=\"critDamage\" [(ngModel)]=\"addEquip.stats.critDamagePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\"><input name=\"eff\" [(ngModel)]=\"addEquip.stats.effectivenessPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/resistance.gif\" alt=\"Resistance\"><input name=\"resistance\" [(ngModel)]=\"addEquip.stats.resistancePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-footer\">\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"addEquipment()\">Add</button>\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"save()\">Save</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -97,8 +97,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heroList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./heroList */ "./src/app/heroList.ts");
 /* harmony import */ var _jobSignBonusList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./jobSignBonusList */ "./src/app/jobSignBonusList.ts");
 /* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./hero */ "./src/app/hero.ts");
-/* harmony import */ var _starStatLevel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./starStatLevel */ "./src/app/starStatLevel.ts");
-/* harmony import */ var _stats__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./stats */ "./src/app/stats.ts");
+/* harmony import */ var _userSet__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./userSet */ "./src/app/userSet.ts");
+/* harmony import */ var _starStatLevel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./starStatLevel */ "./src/app/starStatLevel.ts");
+/* harmony import */ var _stats__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./stats */ "./src/app/stats.ts");
+
 
 
 
@@ -128,16 +130,21 @@ var AppComponent = /** @class */ (function () {
         this.boots = [];
         this.artifact = { attack: 0, health: 0 };
         this.statBonuses = [];
-        this.selectWeaponIdx = -1;
-        this.selectHelmetIdx = -1;
-        this.selectArmorIdx = -1;
-        this.selectNecklaceIdx = -1;
-        this.selectRingIdx = -1;
-        this.selectBootIdx = -1;
-        this.finalStats = new _stats__WEBPACK_IMPORTED_MODULE_10__["Stats"]();
-        this.selectedStar = new _starStatLevel__WEBPACK_IMPORTED_MODULE_9__["StarStatLevel"]();
+        this.equipmentSetStats = [];
+        this.equipmentSetFinal = [];
+        this.equipmentSets = [];
+        this.setName = '';
+        this.selectWeaponIdx = 0;
+        this.selectHelmetIdx = 0;
+        this.selectArmorIdx = 0;
+        this.selectNecklaceIdx = 0;
+        this.selectRingIdx = 0;
+        this.selectBootIdx = 0;
+        this.finalStats = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
+        this.equipStats = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
+        this.selectedStar = new _starStatLevel__WEBPACK_IMPORTED_MODULE_10__["StarStatLevel"]();
         this.selectedAwakening = 0;
-        this.awakenStat = new _stats__WEBPACK_IMPORTED_MODULE_10__["Stats"]();
+        this.awakenStat = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
         // ************************ File things
         this.setting = {
             element: {
@@ -146,6 +153,26 @@ var AppComponent = /** @class */ (function () {
         };
         // *****************************************
     }
+    AppComponent.prototype.addSet = function () {
+        var newSet = [];
+        newSet.push(this.weapons[this.selectWeaponIdx]);
+        newSet.push(this.helmets[this.selectHelmetIdx]);
+        newSet.push(this.armors[this.selectArmorIdx]);
+        newSet.push(this.necklaces[this.selectNecklaceIdx]);
+        newSet.push(this.rings[this.selectRingIdx]);
+        newSet.push(this.boots[this.selectBootIdx]);
+        var us = new _userSet__WEBPACK_IMPORTED_MODULE_9__["UserSet"]();
+        us.equipment = newSet;
+        if (this.setName) {
+            us.name = this.setName;
+        }
+        if (!this.equipmentSets) {
+            this.equipmentSets = [];
+        }
+        this.equipmentSets.push(us);
+        console.log("added set", us);
+        this.setName = '';
+    };
     AppComponent.prototype.addEquipment = function () {
         console.log("Adding", this.addEquip);
         switch (this.addEquip.type) {
@@ -171,23 +198,26 @@ var AppComponent = /** @class */ (function () {
         console.log("weapons", this.weapons);
         console.log("armors", this.armors);
         this.addEquip = new _equipment__WEBPACK_IMPORTED_MODULE_3__["Equipment"]();
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.addEquipmentInit = function () {
         this.addEquip = new _equipment__WEBPACK_IMPORTED_MODULE_3__["Equipment"]();
     };
-    AppComponent.prototype.remove = function (arr, i) {
-        arr.splice(i, 1);
-        this.CalculateStats();
+    AppComponent.prototype.showSet = function (i) {
+        var userSet = this.equipmentSets[i];
+        var equipStats = this.addAllStats(userSet.equipment);
+        var finalStats = this.calculateFinalStats(equipStats);
+        this.equipmentSetStats.push({ name: userSet.name, stats: equipStats });
+        this.equipmentSetFinal.push({ name: userSet.name, stats: finalStats });
     };
-    AppComponent.prototype.unequip = function () {
-        this.selectWeaponIdx = -1;
-        this.selectHelmetIdx = -1;
-        this.selectArmorIdx = -1;
-        this.selectNecklaceIdx = -1;
-        this.selectRingIdx = -1;
-        this.selectBootIdx = -1;
-        this.CalculateStats();
+    AppComponent.prototype.removeSet = function (i) {
+        this.remove(this.equipmentSetStats, i);
+        this.remove(this.equipmentSetFinal, i);
+    };
+    AppComponent.prototype.remove = function (arr, i) {
+        console.log("remove", arr, i);
+        arr.splice(i, 1);
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.edit = function (arr, i) {
         console.log("edit", arr, i);
@@ -199,47 +229,49 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.save = function () {
         this.addEquip = new _equipment__WEBPACK_IMPORTED_MODULE_3__["Equipment"]();
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectWeapon = function (w) {
         this.selectWeaponIdx = w;
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectArmor = function (w) {
         this.selectArmorIdx = w;
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectNecklace = function (w) {
         this.selectNecklaceIdx = w;
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectRing = function (w) {
         this.selectRingIdx = w;
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectHelmet = function (w) {
         this.selectHelmetIdx = w;
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectBoot = function (w) {
         this.selectBootIdx = w;
-        this.CalculateStats();
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectHero = function () {
         this.selectedStar = this.selectedHero.statsbyStar[0];
         this.selectAwakening(this.selectedAwakening);
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectStar = function (e) {
         if (!e) {
             return;
         }
         this.selectedStar = e;
+        this.CalculateCurrentStats();
     };
     AppComponent.prototype.selectAwakening = function (n) {
         var _this = this;
         console.log("selected " + n);
         this.selectedAwakening = n;
-        this.awakenStat = new _stats__WEBPACK_IMPORTED_MODULE_10__["Stats"]();
+        this.awakenStat = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
         var jobZodiacBonus = this.jobZodiacBonusList.filter(function (item) {
             return item.job === _this.selectedHero.job;
         })[0].bonusStats;
@@ -249,67 +281,74 @@ var AppComponent = /** @class */ (function () {
         for (var i = 0; i < n; i++) {
             this.addStats(this.awakenStat, bonusStatsList[i]);
         }
+        this.CalculateCurrentStats();
         console.log("awaken stats", this.awakenStat);
     };
     AppComponent.prototype.addStats = function (dest, src) {
+        console.log("addstats", dest, src);
         for (var property in src) {
             if (src.hasOwnProperty) {
                 dest[property] = dest[property] + this.getNumber(src[property]);
             }
         }
     };
-    AppComponent.prototype.CalculateStats = function () {
+    AppComponent.prototype.CalculateCurrentStats = function () {
+        var equips = [];
+        equips.push(this.weapons[this.selectWeaponIdx]);
+        equips.push(this.helmets[this.selectHelmetIdx]);
+        equips.push(this.armors[this.selectArmorIdx]);
+        equips.push(this.necklaces[this.selectNecklaceIdx]);
+        equips.push(this.rings[this.selectRingIdx]);
+        equips.push(this.boots[this.selectBootIdx]);
+        this.equipStats = this.addAllStats(equips);
+        this.finalStats = this.calculateFinalStats(this.equipStats);
+    };
+    AppComponent.prototype.addAllStats = function (equips) {
         this.statBonuses = [];
-        this.finalStats = new _stats__WEBPACK_IMPORTED_MODULE_10__["Stats"]();
-        if (this.selectWeaponIdx >= 0) {
-            this.addStats(this.finalStats, this.weapons[this.selectWeaponIdx].stats);
-        }
-        if (this.selectHelmetIdx >= 0) {
-            this.addStats(this.finalStats, this.helmets[this.selectHelmetIdx].stats);
-        }
-        if (this.selectArmorIdx >= 0) {
-            this.addStats(this.finalStats, this.armors[this.selectArmorIdx].stats);
-        }
-        if (this.selectNecklaceIdx >= 0) {
-            this.addStats(this.finalStats, this.necklaces[this.selectNecklaceIdx].stats);
-        }
-        if (this.selectRingIdx >= 0) {
-            this.addStats(this.finalStats, this.rings[this.selectRingIdx].stats);
-        }
-        if (this.selectBootIdx >= 0) {
-            this.addStats(this.finalStats, this.boots[this.selectBootIdx].stats);
-        }
+        var finalStats = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
+        equips.forEach(function (equip) {
+            this.addStats(finalStats, equip.stats);
+        }, this);
         // calculate bonus
-        for (var i = 0; i < this.sets.length; i++) {
-            var currentSet = this.sets[i];
-            var setCnt = this.getSetCnt(currentSet.name);
+        this.sets.forEach(function (currentSet) {
+            var setCnt = this.getSetCnt(equips, currentSet.name);
             var completeSetCnt = setCnt / currentSet.requiredItems >> 0;
-            console.log("complete set " + currentSet.name + " " + completeSetCnt);
-            for (var i_1 = 0; i_1 < completeSetCnt; i_1++) {
+            //console.log("complete set " + currentSet.name + " " + completeSetCnt);
+            for (var i = 0; i < completeSetCnt; i++) {
                 this.statBonuses.push(currentSet);
             }
-        }
+        }, this);
         for (var i = 0; i < this.statBonuses.length; i++) {
-            this.finalStats[this.statBonuses[i].bonusStat] = this.finalStats[this.statBonuses[i].bonusStat] + this.statBonuses[i].bonusStatValue;
+            finalStats[this.statBonuses[i].bonusStat] = finalStats[this.statBonuses[i].bonusStat] + this.statBonuses[i].bonusStatValue;
         }
-        console.log('final', this.finalStats);
+        console.log('final', finalStats);
+        return finalStats;
     };
-    AppComponent.prototype.getSetCnt = function (setName) {
-        var selectedSets = [this.getSetName(this.weapons[this.selectWeaponIdx]),
-            this.getSetName(this.helmets[this.selectHelmetIdx]),
-            this.getSetName(this.armors[this.selectArmorIdx]),
-            this.getSetName(this.necklaces[this.selectNecklaceIdx]),
-            this.getSetName(this.rings[this.selectRingIdx]),
-            this.getSetName(this.boots[this.selectBootIdx])];
+    AppComponent.prototype.calculateFinalStats = function (stats) {
+        var finalStats = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
+        finalStats.health = (this.selectedStar.stats.health + this.awakenStat.health + (this.selectedStar.stats.health * this.awakenStat.healthPct / 100)) +
+            ((this.selectedStar.stats.health + this.awakenStat.health + (this.selectedStar.stats.health * this.awakenStat.healthPct / 100)) * (stats.healthPct / 100)) +
+            stats.health + this.getNumber(this.artifact.health);
+        finalStats.attack = (this.selectedStar.stats.attack + this.awakenStat.attack + (this.selectedStar.stats.attack * this.awakenStat.attackPct / 100)) +
+            ((this.selectedStar.stats.attack + this.awakenStat.attack + (this.selectedStar.stats.attack * this.awakenStat.attackPct / 100)) * (stats.attackPct / 100)) +
+            stats.attack + this.getNumber(this.artifact.attack);
+        finalStats.defense = this.selectedStar.stats.defense + (this.selectedStar.stats.defense * (stats.defensePct + this.awakenStat.defensePct)) / 100 + stats.defense;
+        finalStats.speed = this.selectedStar.stats.speed + this.awakenStat.speed + (this.selectedStar.stats.speed * stats.speedPct) / 100 + stats.speed;
+        finalStats.critRatePct = this.selectedStar.stats.critRatePct + stats.critRatePct + this.awakenStat.critRatePct;
+        finalStats.critDamagePct = this.selectedStar.stats.critDamagePct + stats.critDamagePct + this.awakenStat.critDamagePct;
+        finalStats.dualPct = this.selectedStar.stats.dualPct + stats.dualPct;
+        finalStats.effectivenessPct = this.selectedStar.stats.effectivenessPct + stats.effectivenessPct + this.awakenStat.effectivenessPct;
+        finalStats.resistancePct = this.selectedStar.stats.resistancePct + stats.resistancePct + this.awakenStat.resistancePct;
+        return finalStats;
+    };
+    AppComponent.prototype.getSetCnt = function (equips, setName) {
+        var selectedSets = [];
+        equips.forEach(function (equip) {
+            selectedSets.push(equip.set);
+        });
         return selectedSets.filter(function (item) {
             return item === setName;
         }).length;
-    };
-    AppComponent.prototype.getSetName = function (s) {
-        if (s && s.set) {
-            return s.set;
-        }
-        return "";
     };
     AppComponent.prototype.getNumber = function (n) {
         if (!n)
@@ -322,7 +361,7 @@ var AppComponent = /** @class */ (function () {
         this.file = e.target.files[0];
     };
     AppComponent.prototype.fakeEquips = function () {
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])({ weapons: this.weapons, armors: this.armors, helmets: this.helmets, necklaces: this.necklaces, rings: this.rings, boots: this.boots });
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])({ weapons: this.weapons, armors: this.armors, helmets: this.helmets, necklaces: this.necklaces, rings: this.rings, boots: this.boots, equipmentSets: this.equipmentSets });
     };
     AppComponent.prototype.downloadEquips = function () {
         var _this = this;
@@ -346,6 +385,8 @@ var AppComponent = /** @class */ (function () {
                 _this.necklaces = equipsIn.necklaces;
                 _this.rings = equipsIn.rings;
                 _this.boots = equipsIn.boots;
+                _this.equipmentSets = equipsIn.equipmentSets;
+                _this.CalculateCurrentStats();
                 console.log(equipsIn);
             }
         };
@@ -443,7 +484,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"list\">\r\n\t<table border=\"1\">\r\n\t\t<tr>\r\n\t\t\t<td>Set</td>\r\n\t\t\t<td class=\"health\"><img src=\"../assets/health.gif\" alt=\"Health\"></td>\r\n\t\t\t<td class=\"healthPct text-center\">%</td>\r\n\t\t\t<td class=\"defense\"><img src=\"../assets/defense.gif\" alt=\"Defense\"></td>\r\n\t\t\t<td class=\"defensePct text-center\">%</td>\r\n\t\t\t<td class=\"attack\"><img src=\"../assets/attack.gif\" alt=\"Attack\"></td>\r\n\t\t\t<td class=\"attackPct text-center\">%</td>\r\n\t\t\t<td class=\"bg-warning\"><img src=\"../assets/speed.gif\" alt=\"Speed\"></td>\r\n\t\t\t<td class=\"bg-info\"><img src=\"../assets/critRate.gif\" alt=\"Crit Rate\"></td>\r\n\t\t\t<td class=\"bg-info\"><img src=\"../assets/critDmg.gif\" alt=\"Crit Damage\"></td>\r\n\t\t\t<td class=\"bg-secondary\"><img src=\"../assets/effectiveness.gif\" alt=\"Effectiveness\"></td>\r\n\t\t\t<td class=\"bg-secondary\"><img src=\"../assets/resistance.gif\" alt=\"Resistance\"></td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor=\"let w of list;let i =index\" (click)=\"select(i)\">\r\n\t\t\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><div class=\"{{w.set}}Icon\"></div></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><span class=\"health\">{{w.stats.health}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"health\"><span>{{w.stats.healthPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defense}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defensePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attack}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attackPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"speed\"><span>{{w.stats.speed}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critRatePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critDamagePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.effectivenessPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.resistancePct}}</span></td>\r\n\t\t\t<td>\r\n\t\t\t\t<span class=\"fas fa-trash\" aria-hidden=\"true\" (click)=\"remove(i)\"></span>&nbsp;\r\n\t\t\t\t<span class=\"far fa-edit\" aria-hidden=\"true\" (click)=\"edit(i)\"></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</table>\r\n</div>"
+module.exports = "<div *ngIf=\"list\">\r\n\t<table border=\"1\">\r\n\t\t<tr>\r\n\t\t\t<td>Set</td>\r\n\t\t\t<td class=\"health\"><img src=\"../assets/health.gif\" alt=\"Health\"></td>\r\n\t\t\t<td class=\"healthPct text-center\">%</td>\r\n\t\t\t<td class=\"defense\"><img src=\"../assets/defense.gif\" alt=\"Defense\"></td>\r\n\t\t\t<td class=\"defensePct text-center\">%</td>\r\n\t\t\t<td class=\"attack\"><img src=\"../assets/attack.gif\" alt=\"Attack\"></td>\r\n\t\t\t<td class=\"attackPct text-center\">%</td>\r\n\t\t\t<td class=\"bg-warning\"><img src=\"../assets/speed.gif\" alt=\"Speed\"></td>\r\n\t\t\t<td class=\"bg-info\"><img src=\"../assets/critRate.gif\" alt=\"Crit Rate\"></td>\r\n\t\t\t<td class=\"bg-info\"><img src=\"../assets/critDmg.gif\" alt=\"Crit Damage\"></td>\r\n\t\t\t<td class=\"bg-secondary\"><img src=\"../assets/effectiveness.gif\" alt=\"Effectiveness\"></td>\r\n\t\t\t<td class=\"bg-secondary\"><img src=\"../assets/resistance.gif\" alt=\"Resistance\"></td>\r\n\t\t\t<td>lvl</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor=\"let w of list;let i =index\" (click)=\"select(i)\">\r\n\t\t\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><div class=\"{{w.set}}Icon\"></div></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><span class=\"health\">{{w.stats.health}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"health\"><span>{{w.stats.healthPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defense}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defensePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attack}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attackPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"speed\"><span>{{w.stats.speed}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critRatePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critDamagePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.effectivenessPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.resistancePct}}</span></td>\r\n\t\t\t<td class=\"{{w.rarity}}\"><span>{{w.level}}</span></td>\r\n\t\t\t<td>\r\n\t\t\t\t<span class=\"fas fa-trash finger\" aria-hidden=\"true\" (click)=\"remove(i)\"></span>&nbsp;\r\n\t\t\t\t<span class=\"far fa-edit finger\" aria-hidden=\"true\" (click)=\"edit(i)\"></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</table>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -767,37 +808,37 @@ var JOB_SIGN_BONUS_LIST = [
         bonusStats: [{ sign: 'Leo', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Aries', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 }
                 ] },
             { sign: 'Scorpio', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Gemini', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Aquarius', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
-                    { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Taurus', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 3, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -806,30 +847,30 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Pisces', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Pisces', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Capricorn', bonusStats: [{ attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 6, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Virgo', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
             { sign: 'Cancer', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
             { sign: 'Sagittarius', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
             { sign: 'Libra', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] }] },
     { job: 'Soul Weaver',
-        bonusStats: [{ sign: 'Gemini', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 3, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+        bonusStats: [{ sign: 'Gemini', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, defensePct: 0, attackPct: 0, healthPct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 12, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Aquarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -854,11 +895,11 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, defensePct: 0, attackPct: 0, healthPct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Virgo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Sagittarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -884,16 +925,16 @@ var JOB_SIGN_BONUS_LIST = [
         bonusStats: [{ sign: 'Leo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Aries', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Scorpio', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -903,11 +944,11 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Gemini', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Taurus', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -917,18 +958,18 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Pisces', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 3, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 12, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Capricorn', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 3, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 12, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Cancer', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -940,7 +981,7 @@ var JOB_SIGN_BONUS_LIST = [
             { sign: 'Libra', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 12, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
@@ -956,61 +997,61 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Aries', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Aries', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Scorpio', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Scorpio', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 6, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 10, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Gemini', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Aquarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Aquarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Taurus', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 3, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Taurus', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 6, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 12, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Pisces', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 6 }
                 ] },
             { sign: 'Cancer', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Sagittarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Libra', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
             { sign: 'Capricorn', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
@@ -1020,7 +1061,7 @@ var JOB_SIGN_BONUS_LIST = [
         bonusStats: [{ sign: 'Leo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
@@ -1039,11 +1080,11 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Taurus', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 3, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 5, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 6, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 10, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Capricorn', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -1052,12 +1093,12 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Virgo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Virgo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Cancer', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 3, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -1067,11 +1108,11 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 6, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Sagittarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Libra', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -1088,15 +1129,15 @@ var JOB_SIGN_BONUS_LIST = [
             { sign: 'Leo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 3, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
-            { sign: 'Libra', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+            { sign: 'Libra', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 6, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 10, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Sagittarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
@@ -1111,15 +1152,15 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Aquarius', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Cancer', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
             { sign: 'Virgo', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
@@ -1130,19 +1171,19 @@ var JOB_SIGN_BONUS_LIST = [
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Capricorn', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 2 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 3, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 4 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 6, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 12, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Taurus', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] },
             { sign: 'Scorpio', bonusStats: [{ attack: 20, health: 60, defense: 0, attackPct: 3, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 3, dualPct: 0, speedPct: 0, speed: 0 },
+                    { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 4, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 20, health: 60, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 6, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
                     { attack: 30, health: 80, defense: 0, attackPct: 6, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 0, dualPct: 0, speedPct: 0, speed: 0 },
-                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 6, dualPct: 0, speedPct: 0, speed: 0 }
+                    { attack: 30, health: 80, defense: 0, attackPct: 0, healthPct: 0, defensePct: 0, effectivenessPct: 0, resistancePct: 0, critDamagePct: 0, critRatePct: 8, dualPct: 0, speedPct: 0, speed: 0 }
                 ] },
             { sign: 'Aries', bonusStats: [new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"]()] }
         ] }
@@ -1229,6 +1270,28 @@ var Stats = /** @class */ (function () {
         this.speedPct = sP;
     }
     return Stats;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/userSet.ts":
+/*!****************************!*\
+  !*** ./src/app/userSet.ts ***!
+  \****************************/
+/*! exports provided: UserSet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserSet", function() { return UserSet; });
+var UserSet = /** @class */ (function () {
+    function UserSet() {
+        this.name = '';
+        this.equipment = [];
+    }
+    return UserSet;
 }());
 
 
