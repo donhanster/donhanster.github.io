@@ -74,7 +74,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"container\">\r\n\t<div class=\"custom-file\" style=\"width:320px;display:inline-block;margin-right:15px;\">\r\n\t\t<input type=\"file\" class=\"custom-file-input\" id=\"customFile\" (change)=\"fileChanged($event)\" >\r\n\t\t<label class=\"custom-file-label\" for=\"customFile\">Choose file</label>\r\n\t</div>\r\n\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"uploadDocument()\">import</button>\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"downloadEquips()\">export</button>\r\n\t<hr>\r\n\r\n</div>\r\n<hr>\r\n<div class=\"container\">\r\n\t<div>\r\n\t\t<div style=\"display:inline-block;\">\r\n\t\t\tHero<br>\r\n\t\t\t<select name=\"equipType\" style=\"width:95px;\" [(ngModel)]=\"selectedHero\" (change)=\"selectHero()\">\r\n\t\t\t\t<option *ngFor=\"let e of heroes\" [ngValue]=\"e\">{{e.name}}</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t<div style=\"display:inline-block;\">\r\n\t\t\t\t<br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedStar.starLevel\" [class.far]=\"i>selectedStar.starLevel\" class=\"fa-star finger\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectedHero.statsbyStar[0].starLevel <= i && selectStar(selectedHero.statsbyStar[i - selectedHero.statsbyStar[0].starLevel])\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tAwakening <br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedAwakening\" [class.far]=\"i>selectedAwakening\" class=\"fa-star finger\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectAwakening(i)\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tJob: {{selectedHero.job}} <br>\r\n\t\t\t\tSign: {{selectedHero.zodiacSign}}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<hr>\r\n<div style=\"width:720px;\"[hidden]=\"!selectedHero || !selectedStar\">\r\n\t<table class=\"table table-sm\">\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Base Level {{selectedStar.maxLevel}}</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{selectedStar.stats.attack}}</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{selectedStar.stats.health}}</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{selectedStar.stats.defense}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{selectedStar.stats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{selectedStar.stats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{selectedStar.stats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{selectedStar.stats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{selectedStar.stats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{selectedStar.stats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Awakening</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{awakenStat.attack}} {{awakenStat.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{awakenStat.health}} {{awakenStat.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{awakenStat.defensePct}}%</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{awakenStat.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{awakenStat.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{awakenStat.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{awakenStat.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{awakenStat.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{awakenStat.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Artifact</td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.attack\" size=\"2\"></td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.health\" size=\"2\"></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Equipment</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{equipStats.attack}} {{equipStats.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{equipStats.health}} {{equipStats.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{equipStats.defense}} {{equipStats.defensePct}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{equipStats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{equipStats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{equipStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{equipStats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{equipStats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{equipStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Final</td>\r\n\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{finalStats.attack | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{finalStats.health | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{finalStats.defense | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{finalStats.speed| number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{finalStats.critRatePct}}</td>\r\n\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{finalStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{finalStats.dualPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{finalStats.effectivenessPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{finalStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<ng-container *ngFor=\"let e of equipmentSetStats;let i =index\">\r\n\t\t\t<tr  scope=\"row\">\r\n\t\t\t\t<td>{{e.name}} <span class=\"fas fa-minus attack finger\" (click)=\"removeSet(i)\"></span></td>\r\n\t\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{e.stats.attack}} {{e.stats.attackPct}}%</td>\r\n\t\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{e.stats.health}} {{e.stats.healthPct}}%</td>\r\n\t\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{e.stats.defense}} {{e.stats.defensePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{e.stats.speed}}</td>\r\n\t\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{e.stats.critRatePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{e.stats.critDamagePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{e.stats.dualPct}}</td>\r\n\t\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{e.stats.effectivenessPct}}</td>\r\n\t\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{e.stats.resistancePct}}</td>\r\n\t\t\t</tr>\r\n\t\t\t\r\n\t\t\t<tr scope=\"row\">\r\n\t\t\t\t<td>{{equipmentSetFinal[i].name}}</td>\r\n\t\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{equipmentSetFinal[i].stats.attack | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{equipmentSetFinal[i].stats.health | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{equipmentSetFinal[i].stats.defense | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{equipmentSetFinal[i].stats.speed| number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{equipmentSetFinal[i].stats.critRatePct}}</td>\r\n\t\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{equipmentSetFinal[i].stats.critDamagePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{equipmentSetFinal[i].stats.dualPct}}</td>\r\n\t\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{equipmentSetFinal[i].stats.effectivenessPct}}</td>\r\n\t\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{equipmentSetFinal[i].stats.resistancePct}}</td>\r\n\t\t\t</tr>\r\n\t\t</ng-container>\r\n\t</table>\r\n\r\n</div>\r\n\r\n<hr>\r\n\r\n<div>\r\n\t<div class=\"container\">\r\n\t\t<div class=\"input-group\" style=\"width:300px;\">\r\n\t\t\t<input type=\"text\" [(ngModel)]=\"setName\" placeholder=\"Set Name\" class=\"form-control\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" type=\"button\" (click)=\"addSet()\">Add Set</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t<br/>\r\n\t<div style=\"display:inline-block;margin-left:10px;width:360;\" class=\"panel panel-default\" *ngFor=\"let es of equipmentSets;let i =index\">\r\n\t\t<div class=\"input-group\">\r\n\t\t\t<input type=\"text\" [(ngModel)]=\"es.name\" class=\"form-control\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" (click)=\"showSet(i)\"><span class=\"fas fa-angle-double-up\"></span></button>\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" (click)=\"remove(equipmentSets,i)\"><span class=\"fas fa-times\"></span></button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<app-equipment-list [list]=\"es.equipment\" (editEquip)=\"edit(es.equipment,$event)\" (removeEquip)=\"remove(es.equipment,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<div>\r\n\t<h5 style=\"display:inline-block;margin-right:15px;\">Equipment</h5>\r\n\t<span class=\"fas fa-plus finger health\" data-toggle=\"modal\" data-target=\"#exampleModal\" (click)=\"addEquipmentInit()\"></span>\r\n\t<br><br>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Weapon</b>\r\n\t\t<app-equipment-list [list]=\"weapons\" [selectedEquip]=\"weapons[selectWeaponIdx]\" (selectEquipChange)=\"selectWeapon($event)\" (editEquip)=\"edit(weapons,$event)\" (removeEquip)=\"remove(weapons,$event)\"></app-equipment-list>\r\n\t</div>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Helmet</b>\r\n\t\t<app-equipment-list [list]=\"helmets\" [selectedEquip]=\"helmets[selectHelmetIdx]\" (selectEquipChange)=\"selectHelmet($event)\" (editEquip)=\"edit(helmets,$event)\" (removeEquip)=\"remove(helmets,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Armor</b>\r\n\t\t<app-equipment-list [list]=\"armors\" [selectedEquip]=\"armors[selectArmorIdx]\" (selectEquipChange)=\"selectArmor($event)\" (editEquip)=\"edit(armors,$event)\" (removeEquip)=\"remove(armors,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Necklace</b>\r\n\t\t<app-equipment-list [list]=\"necklaces\" [selectedEquip]=\"necklaces[selectNecklaceIdx]\" (selectEquipChange)=\"selectNecklace($event)\" (editEquip)=\"edit(necklaces,$event)\" (removeEquip)=\"remove(necklaces,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Ring</b>\r\n\t\t<app-equipment-list [list]=\"rings\" [selectedEquip]=\"rings[selectRingIdx]\" (selectEquipChange)=\"selectRing($event)\" (editEquip)=\"edit(rings,$event)\" (removeEquip)=\"remove(rings,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Boot</b>\r\n\t\t<app-equipment-list [list]=\"boots\" [selectedEquip]=\"boots[selectBootIdx]\" (selectEquipChange)=\"selectBoot($event)\" (editEquip)=\"edit(boots,$event)\" (removeEquip)=\"remove(boots,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n\t<div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n\t\t<div class=\"modal-content modal-lg\">\r\n\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t<h5 class=\"modal-title\" id=\"exampleModalLabel\">Add equipment</h5>\r\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeModal()\">\r\n\t\t\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t\t\t</button>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t<div class=\"container-fluid\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSlot\r\n\t\t\t\t\t\t\t<select name=\"equipType\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.type\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of equipTypes\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSet\r\n\t\t\t\t\t\t\t<select name=\"set\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.set\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of sets\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">\r\n\t\t\t\t\t\t\trarity\r\n\t\t\t\t\t\t\t<select name=\"rarity\" style=\"width:90px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.rarity\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let r of rarities\" [value]=\"r\">{{r}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Level<br><input name=\"level\" [(ngModel)]=\"addEquip.level\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Enhancement<input name=\"enhance\" [(ngModel)]=\"addEquip.enhancementLvl\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/health.gif\" alt=\"Health\"><input name=\"health\" [(ngModel)]=\"addEquip.stats.health\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"healthPct\" [(ngModel)]=\"addEquip.stats.healthPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/defense.gif\" alt=\"Defense\"><input name=\"defense\" [(ngModel)]=\"addEquip.stats.defense\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"defensePct\" [(ngModel)]=\"addEquip.stats.defensePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/attack.gif\" alt=\"Attack\"><input name=\"attack\" [(ngModel)]=\"addEquip.stats.attack\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"attackPct\" [(ngModel)]=\"addEquip.stats.attackPct\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/speed.gif\" alt=\"Speed\"><input name=\"speed\" [(ngModel)]=\"addEquip.stats.speed\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\"><input name=\"critChance\" [(ngModel)]=\"addEquip.stats.critRatePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\"><input name=\"critDamage\" [(ngModel)]=\"addEquip.stats.critDamagePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\"><input name=\"eff\" [(ngModel)]=\"addEquip.stats.effectivenessPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/resistance.gif\" alt=\"Resistance\"><input name=\"resistance\" [(ngModel)]=\"addEquip.stats.resistancePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-footer\">\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"addEquipment()\">Add</button>\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"save()\">Save</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"container\">\r\n\t<div class=\"custom-file\" style=\"width:320px;display:inline-block;margin-right:15px;\">\r\n\t\t<input type=\"file\" class=\"custom-file-input\" id=\"customFile\" (change)=\"fileChanged($event)\" >\r\n\t\t<label class=\"custom-file-label\" for=\"customFile\">Choose file</label>\r\n\t</div>\r\n\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"uploadDocument()\">import</button>\r\n\t<button class=\"btn btn-outline-primary\" (click)=\"downloadEquips()\">export</button>\r\n</div>\r\n<hr>\r\n<div class=\"container\">\r\n\t<div>\r\n\t\t<div style=\"display:inline-block;\">\r\n\t\t\tHero<br>\r\n\t\t\t<select name=\"equipType\" style=\"width:95px;\" [(ngModel)]=\"selectedHero\" (change)=\"selectHero()\">\r\n\t\t\t\t<option *ngFor=\"let e of heroes\" [ngValue]=\"e\">{{e.name}}</option>\r\n\t\t\t</select>\r\n\t\t</div>\r\n\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t<div style=\"display:inline-block;\">\r\n\t\t\t\t<br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedStar.starLevel\" [class.far]=\"i>selectedStar.starLevel\" class=\"fa-star finger\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectedHero.statsbyStar[0].starLevel <= i && selectStar(selectedHero.statsbyStar[i - selectedHero.statsbyStar[0].starLevel])\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tAwakening <br>\r\n\t\t\t\t<span [class.fas]=\"i<=selectedAwakening\" [class.far]=\"i>selectedAwakening\" class=\"fa-star finger\" *ngFor=\"let i of [1,2,3,4,5,6]\" (click)=\"selectAwakening(i)\"></span>\r\n\t\t\t</div>\r\n\t\t\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t\t\tJob: {{selectedHero.job}} <br>\r\n\t\t\t\tSign: {{selectedHero.zodiacSign}}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<hr>\r\n<div style=\"width:720px;\"[hidden]=\"!selectedHero || !selectedStar\">\r\n\t<table class=\"table table-sm\">\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Base Level {{selectedStar.maxLevel}}</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{selectedStar.stats.attack}}</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{selectedStar.stats.health}}</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{selectedStar.stats.defense}}</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{selectedStar.stats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{selectedStar.stats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{selectedStar.stats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{selectedStar.stats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{selectedStar.stats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{selectedStar.stats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Awakening</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{awakenStat.attack}} {{awakenStat.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{awakenStat.health}} {{awakenStat.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{awakenStat.defensePct}}%</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{awakenStat.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{awakenStat.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{awakenStat.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{awakenStat.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{awakenStat.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{awakenStat.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Artifact</td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.attack\" size=\"2\"></td>\r\n\t\t\t<td><input [(ngModel)]=\"artifact.health\" size=\"2\"></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Equipment</td>\r\n\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{equipStats.attack}} {{equipStats.attackPct}}%</td>\r\n\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{equipStats.health}} {{equipStats.healthPct}}%</td>\r\n\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{equipStats.defense}} {{equipStats.defensePct}}%</td>\r\n\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{equipStats.speed}}</td>\r\n\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{equipStats.critRatePct}}</td>\r\n\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{equipStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{equipStats.dualPct}}</td>\r\n\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{equipStats.effectivenessPct}}</td>\r\n\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{equipStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<tr scope=\"row\">\r\n\t\t\t<td>Final</td>\r\n\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{finalStats.attack | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{finalStats.health | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{finalStats.defense | number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{finalStats.speed| number:'1.0-0'}}</td>\r\n\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{finalStats.critRatePct}}</td>\r\n\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{finalStats.critDamagePct}}</td>\r\n\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{finalStats.dualPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{finalStats.effectivenessPct}}</td>\r\n\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{finalStats.resistancePct}}</td>\r\n\t\t</tr>\r\n\t\t<ng-container *ngFor=\"let e of equipmentSetStats;let i =index\">\r\n\t\t\t<tr  scope=\"row\">\r\n\t\t\t\t<td>{{e.name}} <span class=\"fas fa-minus attack finger\" (click)=\"removeSet(i)\"></span></td>\r\n\t\t\t\t<td><img src=\"assets/attack.gif\" alt=\"Attack\">{{e.stats.attack}} {{e.stats.attackPct}}%</td>\r\n\t\t\t\t<td><img src=\"assets/health.gif\" alt=\"Health\">{{e.stats.health}} {{e.stats.healthPct}}%</td>\r\n\t\t\t\t<td><img src=\"assets/defense.gif\" alt=\"Defense\">{{e.stats.defense}} {{e.stats.defensePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/speed.gif\" alt=\"Speed\">{{e.stats.speed}}</td>\r\n\t\t\t\t<td><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{e.stats.critRatePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{e.stats.critDamagePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{e.stats.dualPct}}</td>\r\n\t\t\t\t<td><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{e.stats.effectivenessPct}}</td>\r\n\t\t\t\t<td><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{e.stats.resistancePct}}</td>\r\n\t\t\t</tr>\r\n\t\t\t\r\n\t\t\t<tr scope=\"row\">\r\n\t\t\t\t<td>{{equipmentSetFinal[i].name}}</td>\r\n\t\t\t\t<td class=\"attack\"><img src=\"assets/attack.gif\" alt=\"Attack\">{{equipmentSetFinal[i].stats.attack | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"health\"><img src=\"assets/health.gif\" alt=\"Health\">{{equipmentSetFinal[i].stats.health | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"defense\"><img src=\"assets/defense.gif\" alt=\"Defense\">{{equipmentSetFinal[i].stats.defense | number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"speed\"><img src=\"assets/speed.gif\" alt=\"Speed\">{{equipmentSetFinal[i].stats.speed| number:'1.0-0'}}</td>\r\n\t\t\t\t<td class=\"crit\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\">{{equipmentSetFinal[i].stats.critRatePct}}</td>\r\n\t\t\t\t<td  class=\"crit\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\">{{equipmentSetFinal[i].stats.critDamagePct}}</td>\r\n\t\t\t\t<td><img src=\"assets/dual.gif\" alt=\"Dual Attack\">{{equipmentSetFinal[i].stats.dualPct}}</td>\r\n\t\t\t\t<td class=\"eff\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\">{{equipmentSetFinal[i].stats.effectivenessPct}}</td>\r\n\t\t\t\t<td class=\"eff\"><img src=\"assets/resistance.gif\" alt=\"Resistance\">{{equipmentSetFinal[i].stats.resistancePct}}</td>\r\n\t\t\t</tr>\r\n\t\t</ng-container>\r\n\t</table>\r\n\r\n</div>\r\n\r\n<hr>\r\n\r\n<div>\r\n\t<h5>Find Sets</h5>\r\n\t<div style=\"width:650px;\">\r\n\t\t<div style=\"display:inline-block;width:400px;\">\r\n\t\t\t<div class=\"input-group\">\r\n\t\t\t\t<select class=\"custom-select\" name=\"equipType\"  [(ngModel)]=\"bestStatName\">\r\n\t\t\t\t\t<option *ngFor=\"let e of statList\" [ngValue]=\"e\">{{e}}</option>\r\n\t\t\t\t</select>\r\n\t\t\t\t<input type=\"text\" placeholder=\"Min Value\" class=\"form-control\" [(ngModel)]=\"bestStatMin\">\r\n\t\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t\t<button class=\"btn btn-outline-dark\" type=\"button\" (click)=\"addFilter()\">Add Filter</button>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div style=\"display:inline-block;margin-left:20px;width:150px\">\r\n\t\t\t<div class=\"input-group\">\r\n\t\t\t\t<input type=\"text\" aria-label=\"max best\" class=\"form-control\" [(ngModel)]=\"bestStatMaxEquip\">\r\n\t\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t\t<button class=\"btn btn-outline-dark\" type=\"button\" (click)=\"generateBest()\">Find Best</button>\r\n\t\t\t\t</div>\r\n\t\t\t\t<i class=\"fas fa-question-circle\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"this number is the top x equipment to use when calculating which sets match. the higher the number the more combinations are available. This also slows down the calculation\"></i>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t\r\n\t<div style=\"width:307px;\">\r\n\t\t<div class=\"input-group\" *ngFor=\"let s of statFilters;let i =index\">\r\n\t\t\t<div class=\"input-group-prepend\">\r\n\t\t\t\t<span class=\"fas fa-trash finger\" (click)=\"remove(statFilters,i)\"></span>\r\n\t\t\t\t<span class=\"input-group-text\" id=\"basic-addon1\">{{s.statName}}</span>\r\n\t\t\t</div>\r\n\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"stat minimum\" [(ngModel)]=\"s.statMin\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<span class=\"input-group-text\">{{s.resultCnt}}</span>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t\r\n\t<br/>\r\n\t<div style=\"display:inline-block;margin-left:10px;width:360;\" class=\"panel panel-default\" *ngFor=\"let es of equipmentSets;let i =index\">\r\n\t\t<div class=\"input-group\">\r\n\t\t\t<input type=\"text\" [(ngModel)]=\"es.name\" class=\"form-control\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" (click)=\"showSet(i)\" title=\"Compare\"><span class=\"fas fa-angle-double-up\"></span></button>\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" (click)=\"remove(equipmentSets,i)\"><span class=\"fas fa-times\"></span></button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<app-equipment-list [list]=\"es.equipment\" (editEquip)=\"edit(es.equipment,$event)\" (removeEquip)=\"remove(es.equipment,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<div>\r\n\t<h5 style=\"display:inline-block;margin-right:15px;\">Equipment</h5>\r\n\t<span class=\"fas fa-plus finger health\" data-toggle=\"modal\" data-target=\"#exampleModal\" (click)=\"addEquipmentInit()\"></span>\r\n\t\r\n\t<div class=\"container\" style=\"display:inline-block;\">\r\n\t\t<div class=\"input-group\" style=\"width:200px;\">\r\n\t\t\t<input type=\"text\" [(ngModel)]=\"setName\" placeholder=\"Set Name\" class=\"form-control\">\r\n\t\t\t<div class=\"input-group-append\">\r\n\t\t\t\t<button class=\"btn btn-outline-dark\" type=\"button\" (click)=\"addSet()\">Add Set</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n\t\r\n\t<br><br>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Weapon</b>\r\n\t\t<app-equipment-list [list]=\"weapons\" [selectedEquip]=\"weapons[selectWeaponIdx]\" (selectEquipChange)=\"selectWeapon($event)\" (editEquip)=\"edit(weapons,$event)\" (removeEquip)=\"remove(weapons,$event)\"></app-equipment-list>\r\n\t</div>\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Helmet</b>\r\n\t\t<app-equipment-list [list]=\"helmets\" [selectedEquip]=\"helmets[selectHelmetIdx]\" (selectEquipChange)=\"selectHelmet($event)\" (editEquip)=\"edit(helmets,$event)\" (removeEquip)=\"remove(helmets,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Armor</b>\r\n\t\t<app-equipment-list [list]=\"armors\" [selectedEquip]=\"armors[selectArmorIdx]\" (selectEquipChange)=\"selectArmor($event)\" (editEquip)=\"edit(armors,$event)\" (removeEquip)=\"remove(armors,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Necklace</b>\r\n\t\t<app-equipment-list [list]=\"necklaces\" [selectedEquip]=\"necklaces[selectNecklaceIdx]\" (selectEquipChange)=\"selectNecklace($event)\" (editEquip)=\"edit(necklaces,$event)\" (removeEquip)=\"remove(necklaces,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Ring</b>\r\n\t\t<app-equipment-list [list]=\"rings\" [selectedEquip]=\"rings[selectRingIdx]\" (selectEquipChange)=\"selectRing($event)\" (editEquip)=\"edit(rings,$event)\" (removeEquip)=\"remove(rings,$event)\"></app-equipment-list>\r\n\t</div>\r\n\r\n\t<div style=\"display:inline-block;margin-left:10px;\">\r\n\t\t<b>Boot</b>\r\n\t\t<app-equipment-list [list]=\"boots\" [selectedEquip]=\"boots[selectBootIdx]\" (selectEquipChange)=\"selectBoot($event)\" (editEquip)=\"edit(boots,$event)\" (removeEquip)=\"remove(boots,$event)\"></app-equipment-list>\r\n\t</div>\r\n</div>\r\n<hr>\r\n\r\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n\t<div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\r\n\t\t<div class=\"modal-content modal-lg\">\r\n\t\t\t<div class=\"modal-header\">\r\n\t\t\t\t<h5 class=\"modal-title\" id=\"exampleModalLabel\">Add equipment</h5>\r\n\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"closeModal()\">\r\n\t\t\t\t\t<span aria-hidden=\"true\">&times;</span>\r\n\t\t\t\t</button>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-body\">\r\n\t\t\t\t<div class=\"container-fluid\">\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSlot\r\n\t\t\t\t\t\t\t<select name=\"equipType\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.type\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of equipTypes\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-6\">\r\n\t\t\t\t\t\t\tSet\r\n\t\t\t\t\t\t\t<select name=\"set\" style=\"width:95px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.set\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let e of sets\" [value]=\"e.name\">{{e.name}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">\r\n\t\t\t\t\t\t\trarity\r\n\t\t\t\t\t\t\t<select name=\"rarity\" style=\"width:90px;\" class=\"col-auto form-control form-control-sm\" [(ngModel)]=\"addEquip.rarity\">\r\n\t\t\t\t\t\t\t\t<option *ngFor=\"let r of rarities\" [value]=\"r\">{{r}}</option>\r\n\t\t\t\t\t\t\t</select>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Level<br><input name=\"level\" [(ngModel)]=\"addEquip.level\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-4\">Enhancement<input name=\"enhance\" [(ngModel)]=\"addEquip.enhancementLvl\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/health.gif\" alt=\"Health\"><input name=\"health\" [(ngModel)]=\"addEquip.stats.health\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"healthPct\" [(ngModel)]=\"addEquip.stats.healthPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/defense.gif\" alt=\"Defense\"><input name=\"defense\" [(ngModel)]=\"addEquip.stats.defense\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"defensePct\" [(ngModel)]=\"addEquip.stats.defensePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/attack.gif\" alt=\"Attack\"><input name=\"attack\" [(ngModel)]=\"addEquip.stats.attack\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\">%<input name=\"attackPct\" [(ngModel)]=\"addEquip.stats.attackPct\" size=\"2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/speed.gif\" alt=\"Speed\"><input name=\"speed\" [(ngModel)]=\"addEquip.stats.speed\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critRate.gif\" alt=\"Crit Rate\"><input name=\"critChance\" [(ngModel)]=\"addEquip.stats.critRatePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/critDmg.gif\" alt=\"Crit Damage\"><input name=\"critDamage\" [(ngModel)]=\"addEquip.stats.critDamagePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/effectiveness.gif\" alt=\"Effectiveness\"><input name=\"eff\" [(ngModel)]=\"addEquip.stats.effectivenessPct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"><img src=\"assets/resistance.gif\" alt=\"Resistance\"><input name=\"resistance\" [(ngModel)]=\"addEquip.stats.resistancePct\" size=\"2\"></div>\r\n\t\t\t\t\t\t<div class=\"col-sm-2\"></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t\t<div class=\"modal-footer\">\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n\t\t\t\t<button class=\"btn btn-success\" (click)=\"addEquipment()\">Add</button>\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"save()\">Save</button>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
@@ -129,6 +129,9 @@ var AppComponent = /** @class */ (function () {
         this.rings = [];
         this.boots = [];
         this.artifact = { attack: 0, health: 0 };
+        this.bestStatName = '';
+        this.bestStatMin = '';
+        this.statFilters = [];
         this.statBonuses = [];
         this.equipmentSetStats = [];
         this.equipmentSetFinal = [];
@@ -145,6 +148,9 @@ var AppComponent = /** @class */ (function () {
         this.selectedStar = new _starStatLevel__WEBPACK_IMPORTED_MODULE_10__["StarStatLevel"]();
         this.selectedAwakening = 0;
         this.awakenStat = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
+        this.statList = Object.getOwnPropertyNames(this.finalStats);
+        this.bestStat = '';
+        this.bestStatMaxEquip = 5;
         // ************************ File things
         this.setting = {
             element: {
@@ -153,7 +159,160 @@ var AppComponent = /** @class */ (function () {
         };
         // *****************************************
     }
-    AppComponent.prototype.maximize = function (setName) {
+    AppComponent.prototype.addFilter = function () {
+        this.statFilters.push({ statName: this.bestStatName, statMin: this.bestStatMin, resultCnt: 0 });
+    };
+    AppComponent.prototype.generateBest = function () {
+        var bestStat = this.bestStat;
+        var bHelms = this.helmets;
+        var bWeps = this.weapons;
+        var bArmors = this.armors;
+        var bNecks = this.necklaces;
+        var bRings = this.rings;
+        var bBoots = this.boots;
+        var combos = []; // {stats:{}, idx:[]}
+        this.statFilters.forEach(function (s) {
+            s.resultCnt = 0;
+        });
+        bHelms = this.findBest(bHelms, this.statFilters[0].statName, this.bestStatMaxEquip);
+        bWeps = this.findBest(bWeps, this.statFilters[0].statName, this.bestStatMaxEquip);
+        bArmors = this.findBest(bArmors, this.statFilters[0].statName, this.bestStatMaxEquip);
+        bNecks = this.findBest(bNecks, this.statFilters[0].statName, this.bestStatMaxEquip);
+        bRings = this.findBest(bRings, this.statFilters[0].statName, this.bestStatMaxEquip);
+        bBoots = this.findBest(bBoots, this.statFilters[0].statName, this.bestStatMaxEquip);
+        combos = this.generateAllCombos(bWeps, bHelms, bArmors, bNecks, bRings, bBoots, this.statFilters[0]);
+        this.statFilters[0].resultCnt = combos.length;
+        var matchesAll = [];
+        combos.forEach(function (c) {
+            var passes = true;
+            for (var i = 1; i < this.statFilters.length; i++) {
+                var filter = this.statFilters[i];
+                if (!this.passesFilter(c.stats, filter)) {
+                    passes = false;
+                    break;
+                }
+                else {
+                    this.statFilters[i].resultCnt = this.statFilters[i].resultCnt + 1;
+                }
+            }
+            if (passes) {
+                matchesAll.push(c);
+            }
+        }, this);
+        combos = matchesAll;
+        //best = filterBestSets(combos);
+        //let best = this.getBestX(combos,bestStat,this.bestStatMaxEquip);
+        //console.log("best", combos);
+        var cnt = 0;
+        combos.slice(0, 5).forEach(function (bestSet) {
+            var us = new _userSet__WEBPACK_IMPORTED_MODULE_9__["UserSet"]();
+            cnt++;
+            us.name = bestStat + cnt;
+            us.equipment = [bWeps[bestSet.idx[0]], bHelms[bestSet.idx[1]], bArmors[bestSet.idx[2]], bNecks[bestSet.idx[3]], bRings[bestSet.idx[4]], bBoots[bestSet.idx[5]]];
+            if (!this.equipmentSets) {
+                this.equipmentSets = [];
+            }
+            this.equipmentSets.push(us);
+        }, this);
+        //let finalBest:Stats = this.calculateFinalStats(best[0].stats);
+        //this.equipmentSetStats.push({name:"speed",stats:finalBest});
+        //this.equipmentSetFinal.push({name:"speed",stats:best[0].stats});
+    };
+    AppComponent.prototype.getArrayFromIdx = function (array, idx) {
+        var unique = idx.filter(function (v, i, a) { return a.indexOf(v) === i; });
+        var newArr = [];
+        unique.forEach(function (i) {
+            newArr.push(array[i]);
+        });
+        return newArr;
+    };
+    AppComponent.prototype.generateAllCombos = function (bWeps, bHelms, bArmors, bNecks, bRings, bBoots, filter) {
+        var combos = [];
+        for (var i = 0; i < bWeps.length; i++) {
+            for (var j = 0; j < bHelms.length; j++) {
+                for (var k = 0; k < bArmors.length; k++) {
+                    for (var l = 0; l < bNecks.length; l++) {
+                        for (var m = 0; m < bRings.length; m++) {
+                            for (var n = 0; n < bBoots.length; n++) {
+                                var finalStats = this.addAllStats([bWeps[i], bHelms[j], bArmors[k], bNecks[l], bRings[m], bBoots[n]]);
+                                if (this.passesFilter(finalStats, filter)) {
+                                    combos.push({ stats: finalStats, idx: [i, j, k, l, m, n] });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return combos;
+    };
+    AppComponent.prototype.filter0 = function (equipments) {
+        var finalEquips = [];
+        equipments.forEach(function (e) {
+            var passed = false;
+            this.statFilters.forEach(function (filter) {
+                if (e.stats[filter.statName] > 0) {
+                    passed = true;
+                }
+            });
+            if (passed) {
+                finalEquips.push(e);
+            }
+        }, this);
+        //console.log("filter0",equipments.length, finalEquips.length);
+        if (finalEquips.length === 0) {
+            return equipments.slice(0, 1);
+        }
+        return finalEquips;
+    };
+    AppComponent.prototype.passesFilter = function (item, filter) {
+        var passed = true;
+        if (item[filter.statName] < filter.statMin) {
+            passed = false;
+        }
+        //console.log("checked " + filter.statName, item[filter.statName], filter.statMin,passed);
+        return passed;
+    };
+    AppComponent.prototype.filterBestSets = function (allcombos, filters) {
+        var finalList = [];
+        allcombos.forEach(function (item) {
+            var passed = true;
+            filters.forEach(function (filter) {
+                if (item[filter.statName] < filter.statMin) {
+                    passed = false;
+                }
+            });
+            if (passed) {
+                finalList.push(item);
+            }
+        }, this);
+        return finalList;
+    };
+    AppComponent.prototype.findBest = function (arr, statName, topNums) {
+        var _this = this;
+        //console.log("checking stat [" + statName + "] ", arr);
+        var sortedArr = arr.sort(function (a, b) { return (_this.getNumber(a.stats[statName]) < _this.getNumber(b.stats[statName]) ? 1 : -1); });
+        //console.log("sorted",sortedArr);
+        var topX = sortedArr.slice(0, topNums);
+        var setName = '';
+        this.sets.forEach(function (set) {
+            //console.log("set",set.bonusStat,statName);
+            if (set.bonusStat === statName) {
+                setName = set.name;
+            }
+        });
+        //console.log("setName",setName);
+        for (var i = topNums; i < sortedArr.length; i++) {
+            if (sortedArr[i].set === setName) {
+                topX.push(sortedArr[i]);
+            }
+        }
+        //console.log("best find",topX);
+        return topX;
+    };
+    AppComponent.prototype.getBestX = function (arr, statName, topNums) {
+        var sortedArr = arr.sort(function (a, b) { return (a.stats[statName] < b.stats[statName] ? 1 : -1); });
+        return sortedArr.slice(0, topNums);
     };
     AppComponent.prototype.addSet = function () {
         var newSet = [];
@@ -172,11 +331,11 @@ var AppComponent = /** @class */ (function () {
             this.equipmentSets = [];
         }
         this.equipmentSets.push(us);
-        console.log("added set", us);
+        //console.log("added set", us);
         this.setName = '';
     };
     AppComponent.prototype.addEquipment = function () {
-        console.log("Adding", this.addEquip);
+        //console.log("Adding", this.addEquip);
         switch (this.addEquip.type) {
             case ("Weapon"):
                 this.weapons.push(this.addEquip);
@@ -197,8 +356,8 @@ var AppComponent = /** @class */ (function () {
                 this.boots.push(this.addEquip);
                 break;
         }
-        console.log("weapons", this.weapons);
-        console.log("armors", this.armors);
+        //console.log("weapons", this.weapons);
+        //console.log("armors", this.armors);
         this.addEquip = new _equipment__WEBPACK_IMPORTED_MODULE_3__["Equipment"]();
         this.CalculateCurrentStats();
     };
@@ -217,12 +376,12 @@ var AppComponent = /** @class */ (function () {
         this.remove(this.equipmentSetFinal, i);
     };
     AppComponent.prototype.remove = function (arr, i) {
-        console.log("remove", arr, i);
+        //console.log("remove", arr,i);
         arr.splice(i, 1);
         this.CalculateCurrentStats();
     };
     AppComponent.prototype.edit = function (arr, i) {
-        console.log("edit", arr, i);
+        //console.log("edit",arr,i);
         this.addEquip = arr[i];
         this.addEquipType = this.equipTypes.filter(function (item) {
             return item.name === arr[i].type;
@@ -278,7 +437,7 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.selectAwakening = function (n) {
         var _this = this;
-        console.log("selected " + n);
+        //console.log("selected " + n);
         this.selectedAwakening = n;
         this.awakenStat = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
         var jobZodiacBonus = this.jobZodiacBonusList.filter(function (item) {
@@ -292,10 +451,10 @@ var AppComponent = /** @class */ (function () {
         }
         this.CalculateCurrentStats();
         this.updateSetStats();
-        console.log("awaken stats", this.awakenStat);
+        //console.log("awaken stats", this.awakenStat);
     };
     AppComponent.prototype.addStats = function (dest, src) {
-        console.log("addstats", dest, src);
+        //console.log("addstats", dest, src);
         for (var property in src) {
             if (src.hasOwnProperty) {
                 dest[property] = dest[property] + this.getNumber(src[property]);
@@ -314,10 +473,15 @@ var AppComponent = /** @class */ (function () {
         this.finalStats = this.calculateFinalStats(this.equipStats);
     };
     AppComponent.prototype.addAllStats = function (equips) {
+        if (!equips[0]) {
+            return new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
+        }
         this.statBonuses = [];
         var finalStats = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
         equips.forEach(function (equip) {
-            this.addStats(finalStats, equip.stats);
+            if (equip) {
+                this.addStats(finalStats, equip.stats);
+            }
         }, this);
         // calculate bonus
         this.sets.forEach(function (currentSet) {
@@ -331,17 +495,19 @@ var AppComponent = /** @class */ (function () {
         for (var i = 0; i < this.statBonuses.length; i++) {
             finalStats[this.statBonuses[i].bonusStat] = finalStats[this.statBonuses[i].bonusStat] + this.statBonuses[i].bonusStatValue;
         }
-        console.log('final', finalStats);
+        //console.log('final', finalStats);
         return finalStats;
     };
     AppComponent.prototype.calculateFinalStats = function (stats) {
         var finalStats = new _stats__WEBPACK_IMPORTED_MODULE_11__["Stats"]();
-        finalStats.health = (this.selectedStar.stats.health + this.awakenStat.health + (this.selectedStar.stats.health * this.awakenStat.healthPct / 100)) +
-            ((this.selectedStar.stats.health + this.awakenStat.health + (this.selectedStar.stats.health * this.awakenStat.healthPct / 100)) * (stats.healthPct / 100)) +
-            stats.health + this.getNumber(this.artifact.health);
-        finalStats.attack = (this.selectedStar.stats.attack + this.awakenStat.attack + (this.selectedStar.stats.attack * this.awakenStat.attackPct / 100)) +
-            ((this.selectedStar.stats.attack + this.awakenStat.attack + (this.selectedStar.stats.attack * this.awakenStat.attackPct / 100)) * (stats.attackPct / 100)) +
-            stats.attack + this.getNumber(this.artifact.attack);
+        var baseHealth = Math.floor(this.selectedStar.stats.health * (1 + this.awakenStat.healthPct / 100) + this.awakenStat.health); // round down
+        finalStats.health = (baseHealth * (1 + stats.healthPct / 100)) + // equipment health pct
+            stats.health + // equipment health
+            this.getNumber(this.artifact.health); // artifact health
+        var baseAttack = Math.floor(this.selectedStar.stats.attack * (1 + this.awakenStat.attackPct / 100) + this.awakenStat.attack); // round down
+        finalStats.attack = (baseAttack * (1 + stats.attackPct / 100)) + // equipment attack pct
+            stats.attack + // equipment attack
+            this.getNumber(this.artifact.attack); // artifact attack
         finalStats.defense = this.selectedStar.stats.defense + (this.selectedStar.stats.defense * (stats.defensePct + this.awakenStat.defensePct)) / 100 + stats.defense;
         finalStats.speed = this.selectedStar.stats.speed + this.awakenStat.speed + (this.selectedStar.stats.speed * stats.speedPct) / 100 + stats.speed;
         finalStats.critRatePct = this.selectedStar.stats.critRatePct + stats.critRatePct + this.awakenStat.critRatePct;
@@ -397,7 +563,7 @@ var AppComponent = /** @class */ (function () {
                 _this.boots = equipsIn.boots;
                 _this.equipmentSets = equipsIn.equipmentSets;
                 _this.CalculateCurrentStats();
-                console.log(equipsIn);
+                console.log("loaded Data", equipsIn);
             }
         };
         fileReader.readAsText(this.file);
@@ -494,7 +660,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"list\">\r\n\t<table border=\"1\">\r\n\t\t<tr>\r\n\t\t\t<td>Set</td>\r\n\t\t\t<td class=\"health\"><img src=\"../assets/health.gif\" alt=\"Health\"></td>\r\n\t\t\t<td class=\"healthPct text-center\">%</td>\r\n\t\t\t<td class=\"defense\"><img src=\"../assets/defense.gif\" alt=\"Defense\"></td>\r\n\t\t\t<td class=\"defensePct text-center\">%</td>\r\n\t\t\t<td class=\"attack\"><img src=\"../assets/attack.gif\" alt=\"Attack\"></td>\r\n\t\t\t<td class=\"attackPct text-center\">%</td>\r\n\t\t\t<td class=\"bg-warning\"><img src=\"../assets/speed.gif\" alt=\"Speed\"></td>\r\n\t\t\t<td class=\"bg-info\"><img src=\"../assets/critRate.gif\" alt=\"Crit Rate\"></td>\r\n\t\t\t<td class=\"bg-info\"><img src=\"../assets/critDmg.gif\" alt=\"Crit Damage\"></td>\r\n\t\t\t<td class=\"bg-secondary\"><img src=\"../assets/effectiveness.gif\" alt=\"Effectiveness\"></td>\r\n\t\t\t<td class=\"bg-secondary\"><img src=\"../assets/resistance.gif\" alt=\"Resistance\"></td>\r\n\t\t\t<td>lvl</td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor=\"let w of list;let i =index\" (click)=\"select(i)\">\r\n\t\t\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><div class=\"{{w.set}}Icon\"></div></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><span class=\"health\">{{w.stats.health}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"health\"><span>{{w.stats.healthPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defense}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defensePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attack}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attackPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"speed\"><span>{{w.stats.speed}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critRatePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critDamagePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.effectivenessPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.resistancePct}}</span></td>\r\n\t\t\t<td class=\"{{w.rarity}}\"><span>{{w.level}}</span></td>\r\n\t\t\t<td>\r\n\t\t\t\t<span class=\"fas fa-trash finger\" aria-hidden=\"true\" (click)=\"remove(i)\"></span>&nbsp;\r\n\t\t\t\t<span class=\"far fa-edit finger\" aria-hidden=\"true\" (click)=\"edit(i)\"></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</table>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"list\">\r\n\t<table border=\"1\">\r\n\t\t<tr>\r\n\t\t\t<td></td>\r\n\t\t\t<td>Set</td>\r\n\t\t\t<td>lvl</td>\r\n\t\t\t<td><img src=\"../assets/health.gif\" alt=\"Health\"></td>\r\n\t\t\t<td class=\"text-center\">%</td>\r\n\t\t\t<td><img src=\"../assets/defense.gif\" alt=\"Defense\"></td>\r\n\t\t\t<td class=\"text-center\">%</td>\r\n\t\t\t<td><img src=\"../assets/attack.gif\" alt=\"Attack\"></td>\r\n\t\t\t<td class=\"text-center\">%</td>\r\n\t\t\t<td><img src=\"../assets/speed.gif\" alt=\"Speed\"></td>\r\n\t\t\t<td><img src=\"../assets/critRate.gif\" alt=\"Crit Rate\"></td>\r\n\t\t\t<td><img src=\"../assets/critDmg.gif\" alt=\"Crit Damage\"></td>\r\n\t\t\t<td><img src=\"../assets/effectiveness.gif\" alt=\"Effectiveness\"></td>\r\n\t\t\t<td><img src=\"../assets/resistance.gif\" alt=\"Resistance\"></td>\r\n\t\t\t<td></td>\r\n\t\t</tr>\r\n\t\t<tr *ngFor=\"let w of list;let i =index\" (click)=\"select(i)\">\r\n\t\t\t<td><div class=\"{{w.type}}Icon\"></div></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><div class=\"{{w.set}}Icon\"></div></td>\r\n\t\t\t<td class=\"{{w.rarity}}\"><span>{{w.level}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\"><span class=\"health\">{{w.stats.health}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"health\"><span>{{w.stats.healthPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defense}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"defense\"><span>{{w.stats.defensePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attack}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"attack\"><span>{{w.stats.attackPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"speed\"><span>{{w.stats.speed}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critRatePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"crit\"><span>{{w.stats.critDamagePct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.effectivenessPct}}</span></td>\r\n\t\t\t<td [class.bg-dark]=\"w === selectedEquip\" class=\"eff\"><span>{{w.stats.resistancePct}}</span></td>\r\n\t\t\t<td>\r\n\t\t\t\t<span class=\"fas fa-trash finger\" aria-hidden=\"true\" (click)=\"remove(i)\"></span>&nbsp;\r\n\t\t\t\t<span class=\"far fa-edit finger\" aria-hidden=\"true\" (click)=\"edit(i)\"></span>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</table>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -688,9 +854,11 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "auxiliary-lots", job: "Mage", zodiacSign: "Pisces", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2696, 0, 383, 0, 540, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3527, 0, 491, 0, 698, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4435, 0, 610, 0, 871, 0, 106, 0, 0, 0, 15, 150, 5) }] },
     { name: "azalea", job: "Warrior", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2137, 0, 252, 0, 364, 0, 98, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2967, 0, 339, 0, 495, 0, 98, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3881, 0, 435, 0, 640, 0, 98, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4879, 0, 539, 0, 798, 0, 98, 0, 0, 0, 15, 150, 5) }] },
     { name: "baal-and-sezan", job: "Mage", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3302, 0, 551, 0, 771, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4152, 0, 683, 0, 961, 0, 106, 0, 0, 0, 15, 150, 5) }] },
+    { name: "baiken", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 381, 0, 793, 0, 113, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 473, 0, 989, 0, 113, 0, 0, 0, 15, 150, 5) }] },
     { name: "basar", job: "Mage", zodiacSign: "Aquarius", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3270, 0, 576, 0, 859, 0, 103, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4111, 0, 715, 0, 1070, 0, 103, 0, 0, 0, 15, 150, 5) }] },
     { name: "bask", job: "Knight", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2244, 0, 288, 0, 298, 0, 90, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3114, 0, 388, 0, 405, 0, 90, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4074, 0, 497, 0, 524, 0, 90, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5122, 0, 617, 0, 653, 0, 90, 0, 0, 0, 15, 150, 5) }] },
     { name: "bellona", job: "Ranger", zodiacSign: "Capricorn", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4202, 0, 472, 0, 684, 0, 109, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5284, 0, 585, 0, 853, 0, 109, 0, 0, 0, 15, 150, 5) }] },
+    { name: "blaze-dingo", job: "Soul Weaver", zodiacSign: "Sagittarius", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2279, 0, 394, 0, 383, 0, 100, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2981, 0, 506, 0, 495, 0, 100, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3747, 0, 627, 0, 617, 0, 100, 0, 0, 0, 15, 150, 5) }] },
     { name: "blood-blade-karin", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3041, 0, 291, 0, 563, 0, 111, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3977, 0, 373, 0, 728, 0, 111, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5001, 0, 462, 0, 907, 0, 111, 0, 0, 0, 15, 150, 5) }] },
     { name: "butcher-corps-inquisitor", job: "Knight", zodiacSign: "Leo", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2067, 0, 283, 0, 314, 0, 95, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2869, 0, 381, 0, 428, 0, 95, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3752, 0, 489, 0, 553, 0, 95, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4718, 0, 606, 0, 689, 0, 95, 0, 0, 0, 15, 150, 5) }] },
     { name: "carmainerose", job: "Mage", zodiacSign: "Aquarius", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](1429, 0, 311, 0, 426, 0, 96, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](1984, 0, 418, 0, 580, 0, 96, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2595, 0, 537, 0, 749, 0, 96, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3262, 0, 666, 0, 934, 0, 96, 0, 0, 0, 15, 150, 5) }] },
@@ -709,6 +877,7 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "coli", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3041, 0, 291, 0, 563, 0, 111, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3977, 0, 373, 0, 728, 0, 111, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5001, 0, 462, 0, 907, 0, 111, 0, 0, 0, 15, 150, 5) }] },
     { name: "commander-lorina", job: "Warrior", zodiacSign: "Leo", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](1960, 0, 254, 0, 385, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2721, 0, 341, 0, 524, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3559, 0, 438, 0, 677, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4475, 0, 543, 0, 843, 0, 101, 0, 0, 0, 15, 150, 5) }] },
     { name: "corvus", job: "Warrior", zodiacSign: "Cancer", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3286, 0, 363, 0, 467, 0, 103, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4299, 0, 466, 0, 604, 0, 103, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5405, 0, 578, 0, 753, 0, 103, 0, 0, 0, 15, 150, 5) }] },
+    { name: "crescent-moon-rin", job: "Thief", zodiacSign: "Taurus", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2967, 0, 295, 0, 462, 0, 122, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3881, 0, 378, 0, 596, 0, 122, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4879, 0, 469, 0, 744, 0, 122, 0, 0, 0, 15, 150, 5) }] },
     { name: "crimson-armin", job: "Knight", zodiacSign: "Libra", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3262, 0, 405, 0, 416, 0, 97, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 520, 0, 538, 0, 97, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 645, 0, 671, 0, 97, 0, 0, 0, 15, 150, 5) }] },
     { name: "crozet", job: "Knight", zodiacSign: "Cancer", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3409, 0, 423, 0, 366, 0, 93, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4460, 0, 542, 0, 473, 0, 93, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5607, 0, 673, 0, 589, 0, 93, 0, 0, 0, 15, 150, 5) }] },
     { name: "dark-corvus", job: "Warrior", zodiacSign: "Capricorn", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4653, 0, 500, 0, 655, 0, 102, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5850, 0, 620, 0, 816, 0, 102, 0, 0, 0, 15, 150, 5) }] },
@@ -772,6 +941,7 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "roozid", job: "Thief", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 3, maxLevel: 30, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](1730, 0, 216, 0, 277, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2401, 0, 291, 0, 377, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3141, 0, 373, 0, 487, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3950, 0, 462, 0, 608, 0, 106, 0, 0, 0, 15, 150, 5) }] },
     { name: "rose", job: "Knight", zodiacSign: "Libra", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3262, 0, 405, 0, 416, 0, 97, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 520, 0, 538, 0, 97, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 645, 0, 671, 0, 97, 0, 0, 0, 15, 150, 5) }] },
     { name: "ruele-of-light", job: "Soul Weaver", zodiacSign: "Pisces", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3688, 0, 559, 0, 378, 0, 98, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4637, 0, 694, 0, 471, 0, 98, 0, 0, 0, 15, 150, 5) }] },
+    { name: "sage-ball-and-sezan", job: "Mage", zodiacSign: "Taurus", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3881, 0, 542, 0, 713, 0, 111, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4879, 0, 673, 0, 889, 0, 111, 0, 0, 0, 15, 150, 5) }] },
     { name: "schuri", job: "Ranger", zodiacSign: "Leo", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2918, 0, 110, 0, 524, 0, 110, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3817, 0, 432, 0, 677, 0, 110, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4799, 0, 536, 0, 843, 0, 110, 0, 0, 0, 15, 150, 5) }] },
     { name: "serila", job: "Mage", zodiacSign: "Aquarius", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2352, 0, 429, 0, 608, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3077, 0, 551, 0, 786, 0, 101, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3869, 0, 683, 0, 980, 0, 101, 0, 0, 0, 15, 150, 5) }] },
     { name: "sez", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 381, 0, 793, 0, 113, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 473, 0, 989, 0, 113, 0, 0, 0, 15, 150, 5) }] },
@@ -779,6 +949,8 @@ var HERO_LIST = [{ name: "achates", job: "Soul Weaver", zodiacSign: "Gemini", st
     { name: "shooting-star-achates", job: "Soul Weaver", zodiacSign: "Cancer", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2721, 0, 441, 0, 264, 0, 88, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3559, 0, 565, 0, 342, 0, 88, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4475, 0, 701, 0, 426, 0, 88, 0, 0, 0, 15, 150, 5) }] },
     { name: "sigret", job: "Warrior", zodiacSign: "Taurus", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 446, 0, 793, 0, 109, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 553, 0, 989, 0, 109, 0, 0, 0, 15, 150, 5) }] },
     { name: "silk", job: "Ranger", zodiacSign: "Virgo", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2598, 0, 326, 0, 546, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3399, 0, 418, 0, 706, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4273, 0, 518, 0, 880, 0, 117, 0, 0, 0, 15, 150, 5) }] },
+    { name: "silver-blade-arimintha", job: "Mage", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3302, 0, 551, 0, 771, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4152, 0, 683, 0, 961, 0, 106, 0, 0, 0, 15, 150, 5) }] },
+    { name: "sol", job: "Warrior", zodiacSign: "Sagittarius", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3913, 0, 446, 0, 757, 0, 115, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4920, 0, 553, 0, 943, 0, 115, 0, 0, 0, 15, 150, 5) }] },
     { name: "specimen-sez", job: "Thief", zodiacSign: "Scorpio", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4267, 0, 381, 0, 793, 0, 113, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](5364, 0, 473, 0, 989, 0, 113, 0, 0, 0, 15, 150, 5) }] },
     { name: "specter-tenebria", job: "Mage", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3302, 0, 551, 0, 771, 0, 106, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4152, 0, 683, 0, 961, 0, 106, 0, 0, 0, 15, 150, 5) }] },
     { name: "surin", job: "Thief", zodiacSign: "Gemini", statsbyStar: [{ starLevel: 4, maxLevel: 40, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](2844, 0, 313, 0, 490, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 5, maxLevel: 50, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](3720, 0, 401, 0, 633, 0, 117, 0, 0, 0, 15, 150, 5) }, { starLevel: 6, maxLevel: 60, stats: new _stats__WEBPACK_IMPORTED_MODULE_0__["Stats"](4677, 0, 497, 0, 789, 0, 117, 0, 0, 0, 15, 150, 5) }] },
@@ -1259,12 +1431,12 @@ var Stats = /** @class */ (function () {
         this.attack = 0;
         this.attackPct = 0;
         this.speed = 0;
+        this.speedPct = 0;
         this.effectivenessPct = 0;
         this.resistancePct = 0;
         this.critRatePct = 0;
         this.critDamagePct = 0;
         this.dualPct = 0;
-        this.speedPct = 0;
         this.health = h;
         this.healthPct = hP;
         this.defense = d;
