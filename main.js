@@ -508,7 +508,9 @@ var AppComponent = /** @class */ (function () {
         finalStats.attack = (baseAttack * (1 + stats.attackPct / 100)) + // equipment attack pct
             stats.attack + // equipment attack
             this.getNumber(this.artifact.attack); // artifact attack
-        finalStats.defense = this.selectedStar.stats.defense + (this.selectedStar.stats.defense * (stats.defensePct + this.awakenStat.defensePct)) / 100 + stats.defense;
+        var baseDef = Math.floor(this.selectedStar.stats.defense * (1 + this.awakenStat.defensePct / 100) + this.awakenStat.defense); // round down
+        finalStats.defense = (baseDef * (1 + stats.defensePct / 100)) + // equipment defense pct
+            stats.defense; // equipment defense
         finalStats.speed = this.selectedStar.stats.speed + this.awakenStat.speed + (this.selectedStar.stats.speed * stats.speedPct) / 100 + stats.speed;
         finalStats.critRatePct = this.selectedStar.stats.critRatePct + stats.critRatePct + this.awakenStat.critRatePct;
         finalStats.critDamagePct = this.selectedStar.stats.critDamagePct + stats.critDamagePct + this.awakenStat.critDamagePct;
