@@ -209,7 +209,7 @@ var AppComponent = /** @class */ (function () {
             }
         }, this);
         this.combos = matchesAll.sort(function (a, b) { return (_this.getNumber(a.stats[_this.statFilters[0]]) < _this.getNumber(b.stats[_this.statFilters[0]]) ? 1 : -1); });
-        this.combos.slice(0, 500);
+        this.combos = this.combos.slice(0, 500);
     };
     AppComponent.prototype.addBestSet = function (combo, idx) {
         console.log("Adding best", combo, this.tempWeapons, this.tempHelmets, this.tempArmors, this.tempNecklaces, this.tempRings, this.tempBoots);
